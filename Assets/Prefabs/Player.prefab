@@ -360,6 +360,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerName: player
+  playerColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!114 &114735586798775752
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -383,6 +384,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spellOrigin: {fileID: 4012997953381324}
+  spells:
+  - Fireball
 --- !u!114 &114897724233039930
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -395,8 +398,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 5
-  projectile: {fileID: 114632439300067606, guid: 48f0427c109437e449e70020b4d0a98b,
-    type: 2}
 --- !u!136 &136536972045576366
 CapsuleCollider:
   m_ObjectHideFlags: 1

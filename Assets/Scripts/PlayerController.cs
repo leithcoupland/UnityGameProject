@@ -6,13 +6,15 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour {
 
 	public Transform spellOrigin;
-	//public IAbility[] abilities;
+	public string[] spells;
 
 	Vector3 velocity;
 	Rigidbody myRigidbody;
+	SpellLibrary spellLibrary;
 
 	void Start () {
 		myRigidbody = GetComponent<Rigidbody> ();
+		spellLibrary = SpellLibrary.instance;
 	}
 
 	public void Move(Vector3 _velocity){
@@ -27,10 +29,10 @@ public class PlayerController : MonoBehaviour {
 	public void FixedUpdate(){
 		myRigidbody.MovePosition (myRigidbody.position + velocity * Time.fixedDeltaTime);
 	}
-	/*
-	public void useAbility(int abilityIndex){
-		if (abilityIndex < abilities.Length && abilities [abilityIndex] != null) {
-			abilities [abilityIndex].use ();
+
+	public void castSpell(int spellIndex){
+		if (spellIndex < spells.Length && spells [spellIndex] != null) {
+			spellLibrary.castSpell (spells [spellIndex], GetComponent<PlayerController> ());
 		}
-	}*/
+	}
 }

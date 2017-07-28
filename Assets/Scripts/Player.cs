@@ -7,7 +7,6 @@ public class Player : MonoBehaviour {
 
 	public float moveSpeed = 5;
 
-	public Projectile projectile;
 	Camera viewCamera;
 	PlayerController controller;
 
@@ -32,9 +31,7 @@ public class Player : MonoBehaviour {
 		}
 
 		if (Input.GetKeyDown (KeyCode.Mouse0)) {
-			//controller.useAbility (0);
-			//Projectile newProjectile = Instantiate(projectile, transform.position, transform.rotation) as Projectile;
-			Instantiate(projectile, transform.position, transform.rotation);
+			controller.castSpell (0);
 		}
 			
 	}
