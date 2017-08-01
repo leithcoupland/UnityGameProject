@@ -20,6 +20,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4474333474642158}
   - component: {fileID: 114675907707580016}
+  - component: {fileID: 114573206054045994}
   m_Layer: 0
   m_Name: SpFireball
   m_TagString: Untagged
@@ -40,6 +41,38 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114573206054045994
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1067585883956730}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 372142912, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SceneId:
+    m_Value: 0
+  m_AssetId:
+    i0: 239
+    i1: 217
+    i2: 167
+    i3: 230
+    i4: 189
+    i5: 175
+    i6: 232
+    i7: 4
+    i8: 57
+    i9: 141
+    i10: 65
+    i11: 215
+    i12: 105
+    i13: 255
+    i14: 174
+    i15: 33
+  m_ServerOnly: 0
+  m_LocalPlayerAuthority: 1
 --- !u!114 &114675907707580016
 MonoBehaviour:
   m_ObjectHideFlags: 1

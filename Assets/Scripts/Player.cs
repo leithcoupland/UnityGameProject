@@ -31,7 +31,7 @@ public class Player : MonoBehaviour {
 		}
 
 		if (Input.GetKeyDown (KeyCode.Mouse0)) {
-			controller.castSpell (0);
+			controller.CmdCastSpell (0);
 		}
 			
 	}

@@ -1,12 +1,16 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Networking;
 
 [RequireComponent (typeof (Rigidbody))]
-public class PlayerController : MonoBehaviour {
+public class PlayerController : NetworkBehaviour {
+
+	public Projectile projectile;
 
 	public Transform spellOrigin;
-	public string[] spells;
+	public string[] spellNames;
+	Spell[] spells;
 
 	Vector3 velocity;
 	Rigidbody myRigidbody;
@@ -15,6 +19,10 @@ public class PlayerController : MonoBehaviour {
 	void Start () {
 		myRigidbody = GetComponent<Rigidbody> ();
 		spellLibrary = SpellLibrary.instance;
+		spells = new Spell[spellNames.Length];
+		for (int i = 0; i < spellNames.Length; i++) {
+			spells [i] = spellLibrary.GetSpellFromName (spellNames [i]);
+		}
 	}
 
 	public void Move(Vector3 _velocity){
@@ -30,9 +38,10 @@ public class PlayerController : MonoBehaviour {
 		myRigidbody.MovePosition (myRigidbody.position + velocity * Time.fixedDeltaTime);
 	}
 
-	public void castSpell(int spellIndex){
-		if (spellIndex < spells.Length && spells [spellIndex] != null) {
-			spellLibrary.castSpell (spells [spellIndex], GetComponent<PlayerController> ());
-		}
+	[Command]
+	public void CmdCastSpell(int spellIndex){
+		GameObject fireball = Instantiate(projectile.gameObject, spellOrigin.position, spellOrigin.rotation) as GameObject;
+		NetworkServer.Spawn(fireball);
 	}
+
 }

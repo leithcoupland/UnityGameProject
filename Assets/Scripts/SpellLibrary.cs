@@ -6,8 +6,8 @@ public class SpellLibrary : MonoBehaviour {
 
 	public static SpellLibrary instance;
 
-	public ISpell[] spellList;
-	Dictionary<string, ISpell> spellDict = new Dictionary<string, ISpell>();
+	public Spell[] spellList;
+	Dictionary<string, Spell> spellDict = new Dictionary<string, Spell>();
 
 	void Awake(){
 		if (instance != null) {
@@ -22,11 +22,13 @@ public class SpellLibrary : MonoBehaviour {
 		}
 	}
 
-	public void castSpell(string spellName, PlayerController owner){
+	public Spell GetSpellFromName(string spellName){
 		if (spellDict.ContainsKey (spellName)) {
-			spellDict [spellName].cast (owner);
+			return spellDict [spellName];
 		} else {
-			print ("Spell not found: " + spellName);
+			Debug.Log ("Spell not found: " + spellName);
+			return null;
 		}
 	}
+
 }

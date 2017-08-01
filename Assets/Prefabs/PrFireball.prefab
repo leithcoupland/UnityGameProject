@@ -23,6 +23,7 @@ GameObject:
   - component: {fileID: 135832875469358848}
   - component: {fileID: 23008405158346334}
   - component: {fileID: 114632439300067606}
+  - component: {fileID: 114081565818276090}
   m_Layer: 0
   m_Name: PrFireball
   m_TagString: Untagged
@@ -37,7 +38,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1709469823325366}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: 0}
+  m_LocalPosition: {x: 11.852404, y: 33.40407, z: -69.23926}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -81,6 +82,38 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1709469823325366}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &114081565818276090
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1709469823325366}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 372142912, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SceneId:
+    m_Value: 0
+  m_AssetId:
+    i0: 72
+    i1: 240
+    i2: 66
+    i3: 124
+    i4: 16
+    i5: 148
+    i6: 55
+    i7: 228
+    i8: 73
+    i9: 231
+    i10: 0
+    i11: 32
+    i12: 180
+    i13: 208
+    i14: 169
+    i15: 139
+  m_ServerOnly: 0
+  m_LocalPlayerAuthority: 0
 --- !u!114 &114632439300067606
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -92,6 +125,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6c9dcd528cadca44db33dfb9e738f37a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  collisionMask:
+    serializedVersion: 2
+    m_Bits: 0
+  lifetime: 5
 --- !u!135 &135832875469358848
 SphereCollider:
   m_ObjectHideFlags: 1
