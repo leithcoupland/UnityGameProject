@@ -7,26 +7,27 @@ using UnityEngine.Networking;
 public class PlayerController : NetworkBehaviour {
 
 	public Projectile projectile;
-
 	public Transform spellOrigin;
-	public string[] spellNames;
-	Spell[] spells;
 
-	Vector3 velocity;
+	Vector3 inputVelocity;
+	[SyncVar]
+	Vector3 pushVelocity;
+
+	float friction = .05f;
+	float squaredFrictionThreshold = .01f;
+
 	Rigidbody myRigidbody;
-	SpellLibrary spellLibrary;
 
 	void Start () {
 		myRigidbody = GetComponent<Rigidbody> ();
-		spellLibrary = SpellLibrary.instance;
-		spells = new Spell[spellNames.Length];
-		for (int i = 0; i < spellNames.Length; i++) {
-			spells [i] = spellLibrary.GetSpellFromName (spellNames [i]);
-		}
 	}
 
-	public void Move(Vector3 _velocity){
-		velocity = _velocity;
+	public void Move(Vector3 _inputVelocity){
+		inputVelocity = _inputVelocity;
+	}
+
+	public void Push(Vector3 _pushVelocity){
+		pushVelocity += _pushVelocity;
 	}
 
 	public void LookAt(Vector3 lookPoint){
@@ -35,13 +36,19 @@ public class PlayerController : NetworkBehaviour {
 	}
 
 	public void FixedUpdate(){
+		Vector3 velocity = inputVelocity + pushVelocity;
 		myRigidbody.MovePosition (myRigidbody.position + velocity * Time.fixedDeltaTime);
+		pushVelocity = pushVelocity * (1 / (Time.fixedDeltaTime * 50 * (friction+1)));
+		if (pushVelocity.sqrMagnitude <= squaredFrictionThreshold) {
+			pushVelocity = Vector3.zero;
+		}
 	}
 
 	[Command]
 	public void CmdCastSpell(int spellIndex){
-		GameObject fireball = Instantiate(projectile.gameObject, spellOrigin.position, spellOrigin.rotation) as GameObject;
-		NetworkServer.Spawn(fireball);
+		Projectile fireball = Instantiate(projectile, spellOrigin.position, spellOrigin.rotation) as Projectile;
+		fireball.setOwner (this);
+		NetworkServer.Spawn(fireball.gameObject);
 	}
 
 }
