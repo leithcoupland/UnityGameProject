@@ -34,7 +34,7 @@ public class SetupLocalPlayer : NetworkBehaviour {
 		foreach (Renderer r in rends) {
 			r.material.color = playerColor;
 		}
-		transform.position = new Vector3 (Random.Range (-10, 10), 1, Random.Range (-10, 10));
+		transform.position = new Vector3 (Random.Range (-10, 10), 3, Random.Range (-10, 10));
 	}
 
 	void Update(){

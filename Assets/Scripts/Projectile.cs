@@ -11,6 +11,7 @@ public class Projectile : NetworkBehaviour {
 	public float speed = 10f;
 	public float force = 30f;
 	public float size = 1;
+	public float damage = 10;
 
 	PlayerController owner;
 
@@ -64,6 +65,7 @@ public class Projectile : NetworkBehaviour {
 			PlayerController player = col.GetComponent<PlayerController> ();
 			Vector3 heightCorrectedPos = new Vector3 (transform.position.x, col.transform.position.y, transform.position.z);
 			player.Push ((col.transform.position - heightCorrectedPos).normalized * force);
+			player.Damage (damage);
 			NetworkServer.Destroy (gameObject);
 		}
 	}

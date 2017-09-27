@@ -37,8 +37,8 @@ GameObject:
   m_Component:
   - component: {fileID: 4152037813502886}
   - component: {fileID: 33751210360556612}
-  - component: {fileID: 136536972045576366}
   - component: {fileID: 23490697339322308}
+  - component: {fileID: 65074689602185858}
   - component: {fileID: 54817667293278004}
   - component: {fileID: 114826261868896760}
   - component: {fileID: 114897724233039930}
@@ -262,6 +262,18 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 80
   m_CollisionDetection: 0
+--- !u!65 &65074689602185858
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1052088353280238}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 2, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!102 &102258810051056568
 TextMesh:
   serializedVersion: 3
@@ -368,6 +380,9 @@ MonoBehaviour:
   projectile: {fileID: 114632439300067606, guid: 48f0427c109437e449e70020b4d0a98b,
     type: 2}
   spellOrigin: {fileID: 4012997953381324}
+  collisionMask:
+    serializedVersion: 2
+    m_Bits: 256
 --- !u!114 &114897724233039930
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -380,16 +395,3 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 5
---- !u!136 &136536972045576366
-CapsuleCollider:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1052088353280238}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  m_Radius: 0.5
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}

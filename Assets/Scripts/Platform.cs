@@ -10,13 +10,11 @@ public class Platform : NetworkBehaviour {
 	public bool permanent;
 
 	void Update () {
-		if (permanent) {
+		if (!isServer || permanent) {
 			return;
 		}
-
-		if (isServer) {
-			timer -= Time.deltaTime;
-		}
+			
+		timer -= Time.deltaTime;
 
 		if (timer <= 0) {
 			Activate ();
