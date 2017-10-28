@@ -2,38 +2,41 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent (typeof (PlayerController))]
 public class Player : MonoBehaviour {
 
-	public float moveSpeed = 5;
 
-	Camera viewCamera;
-	PlayerController controller;
+    public GameObject health;
+    public GameObject stamina;
 
-	void Start () {
-		controller = GetComponent<PlayerController> ();
-		viewCamera = Camera.main;
-	}
+    // Use this for initialization
+    void Start()
+    {
 
-	void Update () {
-		Vector3 moveInput = new Vector3 (Input.GetAxisRaw ("Horizontal"), 0, Input.GetAxisRaw ("Vertical"));
-		Vector3 moveVelocity = moveInput.normalized * moveSpeed;
-		controller.Move (moveVelocity);
+    }
 
-		Ray ray = viewCamera.ScreenPointToRay (Input.mousePosition);
-		Plane groundPlane = new Plane (Vector3.up, Vector3.zero);
-		float rayDistance;
 
-		if (groundPlane.Raycast (ray, out rayDistance)) {
-			Vector3 point = ray.GetPoint (rayDistance);
-			//Debug.DrawLine (ray.origin, point, Color.red);
-			controller.LookAt(point);
-		}
 
-		if (Input.GetKeyDown (KeyCode.Mouse0)) {
-			controller.CmdCastSpell (0);
-		}
-			
-	}
+    //Health and stamina changed accoring to player controller information.
+    //Player dies when mass is 0;
+    // Update is called once per frame
+    void Update()
+    {
+        health.transform.localScale = new Vector3(GetComponent<Rigidbody>().mass, health.transform.localScale.y, health.transform.localScale.z);
+        if (GetComponent<Rigidbody>().mass <= 0.01)
+        {
+            Destroy(this.gameObject);
+            AudioManager.instance.PlaySound("death", transform.position);
 
+        }
+        stamina.transform.localScale = new Vector3(GetComponent<PlayerController>().getStamina(), stamina.transform.localScale.y, stamina.transform.localScale.z);
+    }
+
+    //Damage is taken as player enters lava
+    void OnTriggerStay(Collider collisionInfo)
+    {
+        if (collisionInfo.gameObject.tag == "Fire")
+        {
+            GetComponent<Rigidbody>().mass -= 0.05f * Time.deltaTime * 1;
+        }
+    }
 }

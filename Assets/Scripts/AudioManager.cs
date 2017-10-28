@@ -43,8 +43,8 @@ public class AudioManager : MonoBehaviour {
 			sfx2DSource.transform.parent = transform;
 
 			audioListener = FindObjectOfType<AudioListener> ().transform;
-			if (FindObjectOfType<Player> () != null) {
-				playerT = FindObjectOfType<Player> ().transform;
+			if (FindObjectOfType<PlayerController> () != null) {
+				playerT = FindObjectOfType<PlayerController> ().transform;
 			}
 
 			masterVolumePercent = PlayerPrefs.GetFloat ("master vol", 1);
@@ -59,8 +59,11 @@ public class AudioManager : MonoBehaviour {
 		}
 	}
 
-	public void SetVolume(float volumePercent, AudioChannel channel){
-		switch (channel) {
+    //method adjust volumes by applying multipliers to the various output channels
+	public void SetVolume(float volumePercent, AudioChannel channel)
+    {
+		switch (channel)
+        {
 		case AudioChannel.Master:
 			masterVolumePercent = volumePercent;
 			break;
@@ -81,6 +84,7 @@ public class AudioManager : MonoBehaviour {
 		PlayerPrefs.Save ();
 	}
 
+    //Plays an input music track with a 1 second fade
 	public void PlayMusic(AudioClip clip, float fadeDuration = 1){
 		activeMusicSourceIndex = 1 - activeMusicSourceIndex;
 		musicSources [activeMusicSourceIndex].clip = clip;
@@ -89,19 +93,23 @@ public class AudioManager : MonoBehaviour {
 		StartCoroutine (AnimateMusicCrossfade (fadeDuration));
 	}
 
+    //Plays back input audio clip that originates from a vecor position in the game world
 	public void PlaySound(AudioClip clip, Vector3 pos){
 		if (clip != null)
 			AudioSource.PlayClipAtPoint (clip, pos, sfxVolumePercent * masterVolumePercent);
 	}
 
-	public void PlaySound(string soundName, Vector3 pos){
+    //Plays back a audio clip from the library withh matching groupID, that originates from a vecor position in the game world
+    public void PlaySound(string soundName, Vector3 pos){
 		PlaySound (library.GetClipFromName (soundName), pos);
 	}
 
-	public void PlaySound2D(string soundName){
+    //Plays back a audio clip from the library withh matching groupID,
+    public void PlaySound2D(string soundName){
 		sfx2DSource.PlayOneShot (library.GetClipFromName (soundName), sfxVolumePercent * masterVolumePercent);
 	}
 
+    //controls crossfade affect and length
 	IEnumerator AnimateMusicCrossfade(float duration){
 		float percent = 0;
 

@@ -1,0 +1,29 @@
+Initialize engine version: 5.5.2f1 (3829d7f588f3)
+GfxDevice: creating device client; threaded=1
+Direct3D:
+    Version:  Direct3D 11.0 [level 11.0]
+    Renderer: NVIDIA GeForce GTX 860M (ID=0x1392)
+    Vendor:   NVIDIA
+    VRAM:     4065 MB
+    Driver:   20.19.15.4624
+Begin MonoManager ReloadAssembly
+Platform assembly: C:\Users\reape\Downloads\Compressed\Prototype V2.0\Prototype V1.1.5\test_Data\Managed\UnityEngine.dll (this message is harmless)
+Loading C:\Users\reape\Downloads\Compressed\Prototype V2.0\Prototype V1.1.5\test_Data\Managed\UnityEngine.dll into Unity Child Domain
+Platform assembly: C:\Users\reape\Downloads\Compressed\Prototype V2.0\Prototype V1.1.5\test_Data\Managed\Assembly-CSharp-firstpass.dll (this message is harmless)
+Loading C:\Users\reape\Downloads\Compressed\Prototype V2.0\Prototype V1.1.5\test_Data\Managed\Assembly-CSharp-firstpass.dll into Unity Child Domain
+Platform assembly: C:\Users\reape\Downloads\Compressed\Prototype V2.0\Prototype V1.1.5\test_Data\Managed\Assembly-CSharp.dll (this message is harmless)
+Loading C:\Users\reape\Downloads\Compressed\Prototype V2.0\Prototype V1.1.5\test_Data\Managed\Assembly-CSharp.dll into Unity Child Domain
+Platform assembly: C:\Users\reape\Downloads\Compressed\Prototype V2.0\Prototype V1.1.5\test_Data\Managed\UnityEngine.UI.dll (this message is harmless)
+Loading C:\Users\reape\Downloads\Compressed\Prototype V2.0\Prototype V1.1.5\test_Data\Managed\UnityEngine.UI.dll into Unity Child Domain
+Platform assembly: C:\Users\reape\Downloads\Compressed\Prototype V2.0\Prototype V1.1.5\test_Data\Managed\UnityEngine.Networking.dll (this message is harmless)
+Loading C:\Users\reape\Downloads\Compressed\Prototype V2.0\Prototype V1.1.5\test_Data\Managed\UnityEngine.Networking.dll into Unity Child Domain
+Platform assembly: C:\Users\reape\Downloads\Compressed\Prototype V2.0\Prototype V1.1.5\test_Data\Managed\UnityEngine.PlaymodeTestsRunner.dll (this message is harmless)
+Loading C:\Users\reape\Downloads\Compressed\Prototype V2.0\Prototype V1.1.5\test_Data\Managed\UnityEngine.PlaymodeTestsRunner.dll into Unity Child Domain
+Platform assembly: C:\Users\reape\Downloads\Compressed\Prototype V2.0\Prototype V1.1.5\test_Data\Managed\XInputDotNetPure.dll (this message is harmless)
+Loading C:\Users\reape\Downloads\Compressed\Prototype V2.0\Prototype V1.1.5\test_Data\Managed\XInputDotNetPure.dll into Unity Child Domain
+- Completed reload, in  0.047 seconds
+Platform assembly: C:\Users\reape\Downloads\Compressed\Prototype V2.0\Prototype V1.1.5\test_Data\Managed\System.Core.dll (this message is harmless)
+Platform assembly: C:\Users\reape\Downloads\Compressed\Prototype V2.0\Prototype V1.1.5\test_Data\Managed\System.dll (this message is harmless)
+desktop: 1920x1080 60Hz; virtual: 1920x1080 at 0,0
+<RI> Initializing input.
+<RI> Input initialized.

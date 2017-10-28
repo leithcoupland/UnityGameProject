@@ -90,8 +90,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c26b1534100d684280b69c3f405dd26, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mainTheme: {fileID: 8300000, guid: 9c7ac091ae5f4454b813e62c3a84c3f4, type: 3}
-  menuTheme: {fileID: 8300000, guid: 9c7ac091ae5f4454b813e62c3a84c3f4, type: 3}
+  mainTheme: {fileID: 0}
+  menuTheme: {fileID: 0}
 --- !u!114 &114541102515167940
 MonoBehaviour:
   m_ObjectHideFlags: 1
