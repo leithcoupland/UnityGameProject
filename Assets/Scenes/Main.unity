@@ -37,7 +37,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481694, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -937,7 +937,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6c756e392f1d18e4a8e7d9cec60fbfdb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  wait: 20
+  expireTime: 10
 --- !u!1 &151636791
 GameObject:
   m_ObjectHideFlags: 0
@@ -1173,7 +1173,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6c756e392f1d18e4a8e7d9cec60fbfdb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  wait: 10
+  expireTime: 10
 --- !u!1001 &234015326
 Prefab:
   m_ObjectHideFlags: 0
@@ -17337,6 +17337,22 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ca5c291357dc8c54bbb0f485cdccdf17, type: 2}
   m_IsPrefabParent: 0
+--- !u!1 &967437420 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 171860, guid: ca5c291357dc8c54bbb0f485cdccdf17, type: 2}
+  m_PrefabInternal: {fileID: 1261844855}
+--- !u!114 &967437424
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 967437420}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6c756e392f1d18e4a8e7d9cec60fbfdb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  expireTime: 5
 --- !u!1 &971984512 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 171860, guid: ca5c291357dc8c54bbb0f485cdccdf17, type: 2}
@@ -17352,7 +17368,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6c756e392f1d18e4a8e7d9cec60fbfdb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  wait: 40
+  expireTime: 10
 --- !u!1 &977106633
 GameObject:
   m_ObjectHideFlags: 0
@@ -17826,7 +17842,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6c756e392f1d18e4a8e7d9cec60fbfdb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  wait: 40
+  expireTime: 10
 --- !u!1 &1113685518
 GameObject:
   m_ObjectHideFlags: 0
@@ -18163,7 +18179,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6c756e392f1d18e4a8e7d9cec60fbfdb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  wait: 35
+  expireTime: 10
 --- !u!1 &1186410159
 GameObject:
   m_ObjectHideFlags: 0
@@ -18553,6 +18569,7 @@ Transform:
   - {fileID: 186448327}
   - {fileID: 127515150}
   - {fileID: 1639555886}
+  - {fileID: 1652955972}
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -21272,6 +21289,10 @@ Prefab:
     - target: {fileID: 493472, guid: ca5c291357dc8c54bbb0f485cdccdf17, type: 2}
       propertyPath: m_LocalEulerAnglesHint.y
       value: 358
+      objectReference: {fileID: 0}
+    - target: {fileID: 6573540, guid: ca5c291357dc8c54bbb0f485cdccdf17, type: 2}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ca5c291357dc8c54bbb0f485cdccdf17, type: 2}
@@ -25688,6 +25709,49 @@ Transform:
 Transform:
   m_PrefabParentObject: {fileID: 493472, guid: ca5c291357dc8c54bbb0f485cdccdf17, type: 2}
   m_PrefabInternal: {fileID: 1610479604}
+--- !u!1 &1652955971
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 1652955972}
+  - component: {fileID: 1652955973}
+  m_Layer: 0
+  m_Name: MapNavigator
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1652955972
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1652955971}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.6666667, y: 1, z: 0.6666667}
+  m_Children: []
+  m_Father: {fileID: 1245228421}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1652955973
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1652955971}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 630d69efb21ca70408c5fbb88e5e83c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mapSegments: []
+  segmentRadius: 0
+  radiusThreshold: 0
 --- !u!1001 &1661826509
 Prefab:
   m_ObjectHideFlags: 0
