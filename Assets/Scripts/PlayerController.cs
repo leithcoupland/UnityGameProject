@@ -1,293 +1,142 @@
-﻿
-
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using XboxCtrlrInput;
 
 public class PlayerController : MonoBehaviour
 {
+	public GameObject healthBar;
+	public GameObject staminaBar;
+	public GameObject firingPoint;
+	public Projectile projectile;
 
-    public XboxController controller;
-    private static bool didQueryNumOfCtrlrs = false;
-    public float maxStamina;
-    private float stamina;
-    public float rechargeDelay;
-    public float attackCost;
-    private float rechargeTimer = 0;
-    private float stepDelay = 0.4f;
-    private float stepTimer = 0f;
+	Rigidbody rigidBody;
+	Animator animator;
+	public int playerNum { get; private set; }
 
-    [SerializeField]
-    float m_MovingTurnSpeed = 360;
-    [SerializeField]
-    float m_StationaryTurnSpeed = 180;
-    [SerializeField]
-    float m_MoveSpeedMultiplier = 1f;
-    [SerializeField]
-    public float fireRate;
-
-    private float lastShot = -10.0f;
-    Rigidbody m_Rigidbody;
-    Animator m_Animator;
-    bool m_IsGrounded;
-    const float k_Half = 0.5f;
-    float m_TurnAmount;
-    float m_ForwardAmount;
-    bool m_Crouching;
-    static Animator anim;
-    public GameObject firingPoint;
-    public Projectile projectile;
-    private Transform m_Cam;
-    private Vector3 m_CamForward;
-    private Vector3 m_Move;
-    private Vector3 m_Aim;
-    private bool isAiming;
-    private bool m_Jump;
-    private int playerNum;
+	public float maxStamina;
+	public float stamina { get; private set; }
+	public float stamRechargeDelay = 1;
+	public float attackCost;
+	private float stamRechargeTimer = 0;
 
 
-    //Initialise objects and controllers
-    //Determine if controllers are plugged in
-    void Start()
-    {
-        stamina = maxStamina;
+	public float movingTurnSpeed = 360;
+	public float stationaryTurnSpeed = 180;
+	public float moveSpeedMultiplier = 1f;
+	public float fireRate;
+	private float lastShot = -10.0f;
 
-        switch (controller)
-        {
-            case XboxController.First: playerNum = 1; break;
-            case XboxController.Second: playerNum = 2; break;
-            case XboxController.Third: playerNum = 3; break;
-            case XboxController.Fourth: playerNum = 4; break;
-        }
+	private bool isAiming;
+	private bool isMoving;
+	private float stepDelay = 0.4f;
+	private float stepTimer = 0f;
 
-        if(playerNum>XCI.GetNumPluggedCtrlrs())
-        {
-            Destroy(this.gameObject);
-        }
+	void Start(){
+		animator = GetComponent<Animator>();
+		rigidBody = GetComponent<Rigidbody>();
+		if (GetComponent<Player>() != null) {
+			playerNum = GetComponent<Player> ().playerNum;
+		} else if (GetComponent<AIPlayer>() != null) {
+			playerNum = GetComponent<AIPlayer> ().playerNum;
+		}
+		stamina = maxStamina;
+		isMoving = false;
+	}
 
-        m_Animator = GetComponent<Animator>();
-        m_Rigidbody = GetComponent<Rigidbody>();
+	void Update()
+	{
+		healthBar.transform.localScale = new Vector3(rigidBody.mass, healthBar.transform.localScale.y, healthBar.transform.localScale.z);
+		staminaBar.transform.localScale = new Vector3(stamina, staminaBar.transform.localScale.y, staminaBar.transform.localScale.z);
 
-        m_Rigidbody.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY | RigidbodyConstraints.FreezeRotationZ;
-        anim = GetComponent<Animator>();
+		if (rigidBody.mass <= 0.01){
+			Destroy(gameObject);
+			AudioManager.instance.PlaySound("death", transform.position);
+		}
 
-        if (Camera.main != null)
-        {
-            m_Cam = Camera.main.transform;
-        }
-        else
-        {
-            Debug.LogWarning("Warning: no main camera found. Third person character needs a Camera tagged \"MainCamera\", for camera-relative controls.", gameObject);
-        }
+		stamRechargeTimer += Time.deltaTime;
+		if (stamina < maxStamina && stamRechargeTimer > stamRechargeDelay){
+			stamina += Time.deltaTime/4;
+			if (stamina > maxStamina) {
+				stamina = maxStamina;
+			}
+		}
 
-        if (!didQueryNumOfCtrlrs)
-        {
-            didQueryNumOfCtrlrs = true;
+		if (isMoving) {
+			if (stepTimer < stepDelay){
+				stepTimer += Time.deltaTime;
+			} else {
+				stepTimer = 0;
+				AudioManager.instance.PlaySound("footsteps", transform.position);
+			}
+		}
+		animator.SetBool("isRunning", isMoving);
+		animator.SetBool ("isIdle", !isMoving);
+	}
 
-            int queriedNumberOfCtrlrs = XCI.GetNumPluggedCtrlrs();
+	public void Attack(){
+		if (Time.time > (fireRate + lastShot) && stamina > 0)
+		{
+			if (stamina < attackCost){
+				stamina = 0;
+				stamRechargeTimer = 0;
+			} else {
+				stamina -= attackCost;
+				stamRechargeTimer = 0;
+			}
 
-            if (queriedNumberOfCtrlrs == 1)
-            {
-                Debug.Log("Only " + queriedNumberOfCtrlrs + " Xbox controller plugged in.");
-            }
-            else if (queriedNumberOfCtrlrs == 0)
-            {
-                Debug.Log("No Xbox controllers plugged in!");
-            }
-            else
-            {
-                Debug.Log(queriedNumberOfCtrlrs + " Xbox controllers plugged in.");
-            }
-            
-        }
+			animator.SetBool("isCasting", true);
+			Projectile p = Instantiate(projectile, firingPoint.transform.position, transform.rotation);
+			p.setPlayerNo (playerNum);
+			AudioManager.instance.PlaySound("spell", p.transform.position);
+			lastShot = Time.time;
+		}
+	}
 
-    }
+	public void Move(Vector3 moveInput){
+		isMoving = moveInput.magnitude > 0;
+		if (!isMoving) {
+			return;
+		}
+		Vector3 move = moveInput;
+		if (move.magnitude > 1f) {
+			move.Normalize ();
+		}      
+		animator.SetBool("isCasting", false);
+		transform.position += (move * Time.deltaTime * moveSpeedMultiplier);
+		if (!isAiming) {
+			FaceDirection (move);
+		}
+	}
 
-    //Return player stamina
-    public float getStamina()
-    {
-        return stamina;
-    }
+	public void Aim(Vector3 aimInput){
+		isAiming = aimInput.magnitude > 0;
+		if (!isAiming) {
+			return;
+		}
 
-    //Player shooting controls and stamina/mana change
-    void Update()
-    {
-        rechargeTimer += Time.deltaTime;
-        if(stamina<maxStamina && rechargeTimer>rechargeDelay)
-        {
-            stamina += Time.deltaTime/4;
-        }
-        /*Use Later
-        print(anim.name);
-        if (Input.GetButtonDown("Jump") && !anim.GetBool("isAttacking"))
-        if (XCI.GetButtonDown(XboxButton.A, controller) && !anim.GetBool("isAttacking"+playerNum))
-        {
-            anim.SetTrigger("isJumping");
-        }
-        
-        if (XCI.GetButtonDown(XboxButton.B, controller))
-        {
-            audMan.PlaySound2D("Fireball");
-        }
-        */
-        if (XCI.GetButtonDown(XboxButton.RightBumper, controller))
-            {
-                /*Use Later
-                if(playerNum == 1)
-                {
-                    anim.SetTrigger("p1isAttacking");
-                }
-                else if(playerNum == 2)
-                {
-                    anim.SetBool("p2atk", true);
-                    anim.SetFloat("test", 20);
-                }
-                */
-           
+		Vector3 aim = aimInput;
+		if (aim.magnitude > 1f) {
+			aim.Normalize ();
+		}
+		animator.SetBool("isCasting", false);
+		FaceDirection (aim);
+	}
 
-            if (Time.time > (fireRate*2 + lastShot) && stamina > 0)
-            {
-                if(stamina < attackCost)
-                {
-                    stamina = 0;
-                    rechargeTimer = 0;
-                }
-                else
-                {
-                    stamina -= attackCost;
-                    rechargeTimer = 0;
-                }
+	void FaceDirection(Vector3 direction){
+		if (animator.GetCurrentAnimatorStateInfo(0).IsName("CastPrimary") || animator.GetCurrentAnimatorStateInfo(0).IsName("CastAOE")){
+			return;
+		}
+		Vector3 dir = direction;
+		dir = transform.InverseTransformDirection(dir);
+		dir = Vector3.ProjectOnPlane(dir, new Vector3(0,0,0));
+		float turnAmount = Mathf.Atan2(dir.x, dir.z);
+		float turnSpeed = Mathf.Lerp(stationaryTurnSpeed, movingTurnSpeed, dir.z);
+		transform.Rotate(0, turnAmount * turnSpeed * Time.deltaTime, 0);
+	}
 
-                anim.SetBool("isCasting", true);
-                new WaitForSeconds(0.1f);
-                Projectile p = Instantiate(projectile, firingPoint.transform.position, transform.rotation);
-                AudioManager.instance.PlaySound("spell", p.transform.position);
-                p.setPlayerNo(playerNum);
-                lastShot = Time.time;
-            }
-        }
-
-        /*Use Later
-        if (XCI.GetButtonDown(XboxButton.LeftBumper, controller))
-        {
-            //anim.SetTrigger("isAOE");
-            //anim.SetBool("isCasting", true);          
-            
-        }
-        */
-    }
-
-    //return player number which is their controller number
-    public int getPlayerNum()
-    {
-        return playerNum;
-    }
-
-    //Return controller
-    public XboxController getController()
-    {
-        return controller;
-    }
-
-    //Moving player and its animations
-    public void Move(Vector3 move)
-    {
-        if (move.magnitude > 1f) move.Normalize();
-        move = transform.InverseTransformDirection(move);
-        move = Vector3.ProjectOnPlane(move, new Vector3(0, 0, 0));
-        m_TurnAmount = Mathf.Atan2(move.x, move.z);
-        m_ForwardAmount = move.z;
-        m_Animator.SetBool("isCasting", false);
-
-        if (move.magnitude > 0)
-        {
-            m_Animator.SetBool("isRunning", true);
-            m_Animator.SetBool("isIdle", false);
-            
-            if(stepTimer < stepDelay)
-            {
-                stepTimer += Time.deltaTime;
-            }
-            if(stepTimer > stepDelay)
-            {
-                stepTimer = 0;
-                AudioManager.instance.PlaySound("footsteps", transform.position);
-            }
-        }
-        else
-        {
-            m_Animator.SetBool("isRunning", false);
-            m_Animator.SetBool("isIdle", true);
-        }
-
-        if (!(m_Animator.GetCurrentAnimatorStateInfo(0).IsName("CastPrimary") || m_Animator.GetCurrentAnimatorStateInfo(0).IsName("CastAOE")))
-        {            
-             ApplyExtraTurnRotation(move);                    
-        }
-    }
-
-    //Aim player which will be properly implemented later
-    public void Aim(Vector3 move)
-    {
-        if (move.magnitude > 1f) move.Normalize();
-        move = transform.InverseTransformDirection(move);
-        move = Vector3.ProjectOnPlane(move, new Vector3(0,0,0));
-        m_TurnAmount = Mathf.Atan2(move.x, move.z);
-        m_ForwardAmount = move.z;
-        m_Animator.SetBool("isCasting", false);
-        
-
-        if (!(m_Animator.GetCurrentAnimatorStateInfo(0).IsName("CastPrimary") || m_Animator.GetCurrentAnimatorStateInfo(0).IsName("CastAOE")))
-        {
-            float turnSpeed = Mathf.Lerp(m_StationaryTurnSpeed, m_MovingTurnSpeed, m_ForwardAmount);
-            transform.Rotate(0, m_TurnAmount * turnSpeed * Time.deltaTime, 0); 
-        }
-    }
-
-    void ApplyExtraTurnRotation(Vector3 move)
-    {
-        if (!isAiming)
-        {
-            float turnSpeed = Mathf.Lerp(m_StationaryTurnSpeed, m_MovingTurnSpeed, m_ForwardAmount);
-            transform.Rotate(0, m_TurnAmount * turnSpeed * Time.deltaTime, 0);
-        }
-        
-        transform.Translate(move * Time.deltaTime * m_MoveSpeedMultiplier);
-    }
-
-    private void FixedUpdate()
-    {
-        float h = XCI.GetAxis(XboxAxis.LeftStickX, controller);
-        float v = XCI.GetAxis(XboxAxis.LeftStickY, controller);
-        float ah = XCI.GetAxis(XboxAxis.RightStickX, controller);
-        float av = XCI.GetAxis(XboxAxis.RightStickY, controller);
-
-        if (m_Cam != null)
-        {
-            m_CamForward = Vector3.Scale(m_Cam.forward, new Vector3(1, 0, 1)).normalized;
-            m_Move = v * m_CamForward + h * m_Cam.right;
-            m_Aim = av * m_CamForward + ah * m_Cam.right;
-
-        }
-        else
-        {
-            m_Move = v * Vector3.forward + h * Vector3.right;
-            m_Aim = av * Vector3.forward + ah * Vector3.right;
-        }
-
-        if(m_Aim.magnitude>0)
-        {
-            isAiming = true;
-        }
-        else
-        {
-            isAiming = false;
-        }
-
-        Move(m_Move);
-        Aim(m_Aim);
-    }
-    
-
+	void OnTriggerStay(Collider collisionInfo){
+		if (collisionInfo.gameObject.tag == "Fire"){
+			GetComponent<Rigidbody>().mass -= 0.05f * Time.deltaTime * 1;
+		}
+	}
 }

@@ -7,6 +7,7 @@ public class Platform : MonoBehaviour {
 	float timer;
 	bool alternator = true;
 	bool shaking = false;
+	bool outOfPlay = false;
 	Vector3 originalPos;
 	
     public float expireTime = 10f;
@@ -22,6 +23,10 @@ public class Platform : MonoBehaviour {
 	}
 
 	void Update (){
+		if (outOfPlay) {
+			return;
+		}
+
 		timer += Time.deltaTime;
 		if (timer >= expireTime - expireWarnTime) {
 			expiringSoon = true;
@@ -35,7 +40,8 @@ public class Platform : MonoBehaviour {
 			expired = true;
 			transform.Translate(Vector3.down * Time.deltaTime/8);
 			if (timer > expireTime + 10){
-				Destroy(gameObject);
+				shaking = false;
+				outOfPlay = true;
 			}
 		}
 	}

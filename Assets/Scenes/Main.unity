@@ -938,6 +938,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   expireTime: 10
+  expireWarnTime: 0
 --- !u!1 &151636791
 GameObject:
   m_ObjectHideFlags: 0
@@ -1054,6 +1055,11 @@ Transform:
 Transform:
   m_PrefabParentObject: {fileID: 493472, guid: ca5c291357dc8c54bbb0f485cdccdf17, type: 2}
   m_PrefabInternal: {fileID: 421822260}
+--- !u!1 &191097011 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1869696177275314, guid: 1930e227317bccf488e5a87ec47f0d99,
+    type: 2}
+  m_PrefabInternal: {fileID: 440684039}
 --- !u!4 &196445628 stripped
 Transform:
   m_PrefabParentObject: {fileID: 493472, guid: ca5c291357dc8c54bbb0f485cdccdf17, type: 2}
@@ -1174,6 +1180,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   expireTime: 10
+  expireWarnTime: 0
 --- !u!1001 &234015326
 Prefab:
   m_ObjectHideFlags: 0
@@ -4226,6 +4233,31 @@ Prefab:
       propertyPath: fireRate
       value: 0.2
       objectReference: {fileID: 0}
+    - target: {fileID: 114605895032764742, guid: 1930e227317bccf488e5a87ec47f0d99,
+        type: 2}
+      propertyPath: staminaBar
+      value: 
+      objectReference: {fileID: 1390160753}
+    - target: {fileID: 114605895032764742, guid: 1930e227317bccf488e5a87ec47f0d99,
+        type: 2}
+      propertyPath: healthBar
+      value: 
+      objectReference: {fileID: 585580039}
+    - target: {fileID: 114605895032764742, guid: 1930e227317bccf488e5a87ec47f0d99,
+        type: 2}
+      propertyPath: stamRechargeDelay
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114893526964058560, guid: 1930e227317bccf488e5a87ec47f0d99,
+        type: 2}
+      propertyPath: controller
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114605895032764742, guid: 1930e227317bccf488e5a87ec47f0d99,
+        type: 2}
+      propertyPath: moveSpeedMultiplier
+      value: 10
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 1930e227317bccf488e5a87ec47f0d99, type: 2}
   m_IsPrefabParent: 0
@@ -4946,6 +4978,26 @@ Prefab:
         type: 2}
       propertyPath: attackCost
       value: 0.12
+      objectReference: {fileID: 0}
+    - target: {fileID: 114605895032764742, guid: 1930e227317bccf488e5a87ec47f0d99,
+        type: 2}
+      propertyPath: staminaBar
+      value: 
+      objectReference: {fileID: 977106633}
+    - target: {fileID: 114605895032764742, guid: 1930e227317bccf488e5a87ec47f0d99,
+        type: 2}
+      propertyPath: healthBar
+      value: 
+      objectReference: {fileID: 191097011}
+    - target: {fileID: 114605895032764742, guid: 1930e227317bccf488e5a87ec47f0d99,
+        type: 2}
+      propertyPath: stamRechargeDelay
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114893526964058560, guid: 1930e227317bccf488e5a87ec47f0d99,
+        type: 2}
+      propertyPath: controller
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 1930e227317bccf488e5a87ec47f0d99, type: 2}
@@ -10821,6 +10873,11 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!1 &585580039 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1869696177275314, guid: 1930e227317bccf488e5a87ec47f0d99,
+    type: 2}
+  m_PrefabInternal: {fileID: 292069490}
 --- !u!1 &588011809
 GameObject:
   m_ObjectHideFlags: 0
@@ -13577,6 +13634,11 @@ CanvasRenderer:
     type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 601346112}
+--- !u!1 &631245823 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1869696177275314, guid: 1930e227317bccf488e5a87ec47f0d99,
+    type: 2}
+  m_PrefabInternal: {fileID: 1028325849}
 --- !u!1 &649874423
 GameObject:
   m_ObjectHideFlags: 0
@@ -17353,6 +17415,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   expireTime: 5
+  expireWarnTime: 0
 --- !u!1 &971984512 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 171860, guid: ca5c291357dc8c54bbb0f485cdccdf17, type: 2}
@@ -17369,6 +17432,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   expireTime: 10
+  expireWarnTime: 0
 --- !u!1 &977106633
 GameObject:
   m_ObjectHideFlags: 0
@@ -17762,6 +17826,26 @@ Prefab:
       propertyPath: attackCost
       value: 0.22
       objectReference: {fileID: 0}
+    - target: {fileID: 114605895032764742, guid: 1930e227317bccf488e5a87ec47f0d99,
+        type: 2}
+      propertyPath: staminaBar
+      value: 
+      objectReference: {fileID: 151636791}
+    - target: {fileID: 114605895032764742, guid: 1930e227317bccf488e5a87ec47f0d99,
+        type: 2}
+      propertyPath: healthBar
+      value: 
+      objectReference: {fileID: 631245823}
+    - target: {fileID: 114605895032764742, guid: 1930e227317bccf488e5a87ec47f0d99,
+        type: 2}
+      propertyPath: stamRechargeDelay
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114893526964058560, guid: 1930e227317bccf488e5a87ec47f0d99,
+        type: 2}
+      propertyPath: controller
+      value: 4
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 1930e227317bccf488e5a87ec47f0d99, type: 2}
   m_IsPrefabParent: 0
@@ -17827,6 +17911,11 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ca5c291357dc8c54bbb0f485cdccdf17, type: 2}
   m_IsPrefabParent: 0
+--- !u!1 &1074229867 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1869696177275314, guid: 1930e227317bccf488e5a87ec47f0d99,
+    type: 2}
+  m_PrefabInternal: {fileID: 1975041008}
 --- !u!1 &1083005878 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 171860, guid: ca5c291357dc8c54bbb0f485cdccdf17, type: 2}
@@ -17843,6 +17932,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   expireTime: 10
+  expireWarnTime: 0
 --- !u!1 &1113685518
 GameObject:
   m_ObjectHideFlags: 0
@@ -18180,6 +18270,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   expireTime: 10
+  expireWarnTime: 0
 --- !u!1 &1186410159
 GameObject:
   m_ObjectHideFlags: 0
@@ -22416,6 +22507,112 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ca5c291357dc8c54bbb0f485cdccdf17, type: 2}
   m_IsPrefabParent: 0
+--- !u!1001 &1513710099
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 114360898358173074, guid: 4e4c51453bb4eb2449af81a586a6aae9,
+        type: 2}
+      propertyPath: soundGroups.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114360898358173074, guid: 4e4c51453bb4eb2449af81a586a6aae9,
+        type: 2}
+      propertyPath: soundGroups.Array.data[3].group.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114360898358173074, guid: 4e4c51453bb4eb2449af81a586a6aae9,
+        type: 2}
+      propertyPath: soundGroups.Array.data[4].group.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4653386950306986, guid: 4e4c51453bb4eb2449af81a586a6aae9, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4653386950306986, guid: 4e4c51453bb4eb2449af81a586a6aae9, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4653386950306986, guid: 4e4c51453bb4eb2449af81a586a6aae9, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4653386950306986, guid: 4e4c51453bb4eb2449af81a586a6aae9, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4653386950306986, guid: 4e4c51453bb4eb2449af81a586a6aae9, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4653386950306986, guid: 4e4c51453bb4eb2449af81a586a6aae9, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4653386950306986, guid: 4e4c51453bb4eb2449af81a586a6aae9, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4653386950306986, guid: 4e4c51453bb4eb2449af81a586a6aae9, type: 2}
+      propertyPath: m_RootOrder
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 1039268987818022, guid: 4e4c51453bb4eb2449af81a586a6aae9, type: 2}
+      propertyPath: m_Name
+      value: Audio Manager
+      objectReference: {fileID: 0}
+    - target: {fileID: 114360898358173074, guid: 4e4c51453bb4eb2449af81a586a6aae9,
+        type: 2}
+      propertyPath: soundGroups.Array.data[3].groupID
+      value: death
+      objectReference: {fileID: 0}
+    - target: {fileID: 114360898358173074, guid: 4e4c51453bb4eb2449af81a586a6aae9,
+        type: 2}
+      propertyPath: soundGroups.Array.data[3].group.Array.data[0]
+      value: 
+      objectReference: {fileID: 8300000, guid: 908c191e47b6d054f98e3185a61c0412, type: 3}
+    - target: {fileID: 114360898358173074, guid: 4e4c51453bb4eb2449af81a586a6aae9,
+        type: 2}
+      propertyPath: soundGroups.Array.data[3].group.Array.data[1]
+      value: 
+      objectReference: {fileID: 8300000, guid: ebc5a40fd6991644d908443bcc7a3150, type: 3}
+    - target: {fileID: 114360898358173074, guid: 4e4c51453bb4eb2449af81a586a6aae9,
+        type: 2}
+      propertyPath: soundGroups.Array.data[3].group.Array.data[2]
+      value: 
+      objectReference: {fileID: 8300000, guid: c2c2f6e3238dd23468b415205f7b535e, type: 3}
+    - target: {fileID: 114360898358173074, guid: 4e4c51453bb4eb2449af81a586a6aae9,
+        type: 2}
+      propertyPath: soundGroups.Array.data[3].group.Array.data[3]
+      value: 
+      objectReference: {fileID: 8300000, guid: 2c8ecd41ea4e49542bb27a087d3e9215, type: 3}
+    - target: {fileID: 114360898358173074, guid: 4e4c51453bb4eb2449af81a586a6aae9,
+        type: 2}
+      propertyPath: soundGroups.Array.data[3].group.Array.data[4]
+      value: 
+      objectReference: {fileID: 8300000, guid: 74a19f86ad621a4459dfd467a35839ae, type: 3}
+    - target: {fileID: 114360898358173074, guid: 4e4c51453bb4eb2449af81a586a6aae9,
+        type: 2}
+      propertyPath: soundGroups.Array.data[3].group.Array.data[5]
+      value: 
+      objectReference: {fileID: 8300000, guid: 4cd4e26c585b72d438e67b594cfb6a5c, type: 3}
+    - target: {fileID: 114360898358173074, guid: 4e4c51453bb4eb2449af81a586a6aae9,
+        type: 2}
+      propertyPath: soundGroups.Array.data[4].groupID
+      value: UI
+      objectReference: {fileID: 0}
+    - target: {fileID: 114360898358173074, guid: 4e4c51453bb4eb2449af81a586a6aae9,
+        type: 2}
+      propertyPath: soundGroups.Array.data[4].group.Array.data[0]
+      value: 
+      objectReference: {fileID: 8300000, guid: 1df7461e1c78d1141ac424c67aa0e3cc, type: 3}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 4e4c51453bb4eb2449af81a586a6aae9, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1 &1514249210
 GameObject:
   m_ObjectHideFlags: 0
@@ -26541,13 +26738,13 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1919380158}
-  m_LocalRotation: {x: 0.004088643, y: 0.8395852, z: -0.5431759, w: 0.0063202335}
-  m_LocalPosition: {x: 1.2788159, y: 32.17682, z: 18.676727}
+  m_LocalRotation: {x: 0.46174863, y: 0, z: 0, w: 0.8870109}
+  m_LocalPosition: {x: 0, y: 25, z: -25}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 474473021}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 60, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 55, y: 0, z: 0}
 --- !u!1 &1927692672
 GameObject:
   m_ObjectHideFlags: 0
@@ -26857,6 +27054,26 @@ Prefab:
         type: 2}
       propertyPath: attackCost
       value: 0.22
+      objectReference: {fileID: 0}
+    - target: {fileID: 114605895032764742, guid: 1930e227317bccf488e5a87ec47f0d99,
+        type: 2}
+      propertyPath: staminaBar
+      value: 
+      objectReference: {fileID: 62820066}
+    - target: {fileID: 114605895032764742, guid: 1930e227317bccf488e5a87ec47f0d99,
+        type: 2}
+      propertyPath: healthBar
+      value: 
+      objectReference: {fileID: 1074229867}
+    - target: {fileID: 114605895032764742, guid: 1930e227317bccf488e5a87ec47f0d99,
+        type: 2}
+      propertyPath: stamRechargeDelay
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114893526964058560, guid: 1930e227317bccf488e5a87ec47f0d99,
+        type: 2}
+      propertyPath: controller
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 1930e227317bccf488e5a87ec47f0d99, type: 2}

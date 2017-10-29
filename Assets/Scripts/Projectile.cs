@@ -43,7 +43,7 @@ public class Projectile : MonoBehaviour
     {
         float force = 400;
 
-        if (c.gameObject.tag == "Player" && c.gameObject.GetComponent<PlayerController>().getPlayerNum() != playerNo)
+        if (c.gameObject.tag == "Player" && c.gameObject.GetComponent<PlayerController>().playerNum != playerNo)
         {
             AudioManager.instance.PlaySound("grunt", c.transform.position);
             Vector3 dir = c.contacts[0].point - transform.position;
