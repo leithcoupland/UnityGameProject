@@ -7210,9 +7210,6 @@ MonoBehaviour:
   - {fileID: 1205274394}
   - {fileID: 594686230}
   - {fileID: 594946711}
-  resolutionToggles: []
-  fullscreenToggle: {fileID: 0}
-  screenWidths: 
 --- !u!124 &1109209696
 Behaviour:
   m_ObjectHideFlags: 0

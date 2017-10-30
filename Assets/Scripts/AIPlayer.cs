@@ -2,17 +2,30 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent (typeof (PlayerController))]
 public class AIPlayer : MonoBehaviour {
 
+	PlayerController playerController;
 	MapNavigator mapNavigator;
 	Vector3 destination;
 	bool dead;
 	public int playerNum { get; private set; }
 
 	void Start(){
+		playerController = GetComponent<PlayerController> ();
 		mapNavigator = MapNavigator.instance;
 		dead = false;
+		destination = transform.position;
 		StartCoroutine (CheckPlatformExpired());
+	}
+
+	void Update(){
+		moveToDestination ();
+	}
+
+	private void moveToDestination(){
+		Vector3 direction = destination - transform.position;
+
 	}
 
 	IEnumerator CheckPlatformExpired(){

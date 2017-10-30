@@ -15,8 +15,8 @@ public class PlayerController : MonoBehaviour
 
 	public float maxStamina;
 	public float stamina { get; private set; }
-	public float stamRechargeDelay = 1;
 	public float attackCost;
+	public float stamRechargeDelay = 1;
 	private float stamRechargeTimer = 0;
 
 
