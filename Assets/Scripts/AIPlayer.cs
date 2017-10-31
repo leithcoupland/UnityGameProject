@@ -17,6 +17,7 @@ public class AIPlayer : MonoBehaviour {
 		dead = false;
 		destination = transform.position;
 		StartCoroutine (MoveToSafePlatform());
+		StartCoroutine (RandomMovement ());
 	}
 
 	void Update(){
@@ -34,31 +35,43 @@ public class AIPlayer : MonoBehaviour {
 		return (transform.position - mapNavigator.ClosestSafePlatform (transform.position).transform.position).sqrMagnitude;
 	}
 
-	private Vector3 RandomPositionOnPlatform(Vector3 platform){
-		float variance = mapNavigator.platformRadius * 0.9f;
-		Vector3 randomPos = new Vector3 (platform.x + Random.Range(-variance, variance), platform.y, platform.z + Random.Range(-variance, variance));
-		return randomPos;
+	private void FindNearbySafePlatform(){
+		ArrayList reachablePlatforms = mapNavigator.ConnectedSafePlatforms (transform.position);
+		if (reachablePlatforms.Count > 0) {
+			Platform destinationPlatform = (Platform)reachablePlatforms [Random.Range (0, (int)(reachablePlatforms.Count - 1))];
+			destination = mapNavigator.RandomPositionOnPlatform (destinationPlatform.transform.position);
+		} else {
+			destination = mapNavigator.RandomPositionOnPlatform(transform.position);
+		}
 	}
 
 	IEnumerator MoveToSafePlatform(){
 		float refreshRate = .2f;
 		while (!dead) {
-			if (mapNavigator.ClosestPlatform (transform.position) != null) {
-				Platform currentPlatform = mapNavigator.ClosestPlatform (transform.position);
-				if (currentPlatform.pastExpired || SqrDistToNearestSafePlatform() > mapNavigator.CrossPlatformSqrDist()) {
-					destination = RandomPositionOnPlatform(mapNavigator.ClosestSafePlatform (transform.position).transform.position);
-				} 
-				else if (currentPlatform.expired && mapNavigator.ClosestPlatform(destination).expired) {
-					ArrayList reachablePlatforms = mapNavigator.ReachableSafePlatforms (transform.position);
-					if (reachablePlatforms.Count > 0) {
-						Platform destinationPlatform = (Platform)reachablePlatforms [Random.Range (0, (int)(reachablePlatforms.Count - 1))];
-						destination = RandomPositionOnPlatform (destinationPlatform.transform.position);//destinationPlatform.transform.position;
-					} else {
-						destination = RandomPositionOnPlatform (mapNavigator.ClosestSafePlatform(transform.position).transform.position);//mapNavigator.ClosestSafePlatform (transform.position).transform.position;
-					}
-				}
+			Platform currentPlatform = mapNavigator.ClosestPlatform (transform.position);
+			if (currentPlatform.pastExpired || SqrDistToNearestSafePlatform() > 1.5 * mapNavigator.CrossPlatformSqrDist()) {
+				destination = mapNavigator.RandomPositionOnPlatform(transform.position);
+			} 
+			else if (currentPlatform.expired && mapNavigator.ClosestPlatform(destination).expired) {
+				FindNearbySafePlatform ();
 			}
 			yield return new WaitForSeconds (refreshRate);
 		}
+	}
+
+	IEnumerator RandomMovement(){
+		float refreshRate = 0.1f;
+		Platform oldPlat = mapNavigator.ClosestPlatform(transform.position);
+		while (!dead) {
+			refreshRate = Random.Range (0.2f, 0.6f);
+			if (!mapNavigator.ClosestPlatform (transform.position).expired) {
+				if (mapNavigator.ClosestPlatform (transform.position).transform.position == oldPlat.transform.position) {
+					destination = mapNavigator.RandomPositionOnPlatform (mapNavigator.RandomSafePlatform ().transform.position);
+				}
+			}
+			oldPlat = mapNavigator.ClosestPlatform(transform.position);
+			yield return new WaitForSeconds (refreshRate);
+		}
+
 	}
 }
