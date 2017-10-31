@@ -13,12 +13,14 @@ public class Platform : MonoBehaviour {
     public float expireTime = 10f;
 	public float expireWarnTime = 0f;
 	public bool expired { get; private set; }
+	public bool pastExpired { get; private set; }
 	public bool expiringSoon { get; private set; }
 
 	void Start(){
 		timer = 0;
 		originalPos = gameObject.transform.position;
 		expired = false;
+		pastExpired = false;
 		expiringSoon = false;
 	}
 
@@ -32,21 +34,25 @@ public class Platform : MonoBehaviour {
 			expiringSoon = true;
 			if (!shaking) {
 				shaking = true;
-				StartCoroutine (Shake ());
+				//StartCoroutine (Shake ());
 			}
+		}
+
+		if (timer > expireTime + 3) {
+			pastExpired = true;
 		}
 
 		if (timer >= expireTime) {
 			expired = true;
-			transform.Translate(Vector3.down * Time.deltaTime/8);
-			if (timer > expireTime + 10){
+			transform.Translate(Vector3.down * Time.deltaTime/5);
+			if (timer > expireTime + 20){
 				shaking = false;
 				outOfPlay = true;
 			}
 		}
 	}
-
-	IEnumerator Shake(){
+		
+	/*IEnumerator Shake(){
 		while (shaking) {
 			float refreshRate = .05f;
 			if (alternator) {
@@ -57,5 +63,5 @@ public class Platform : MonoBehaviour {
 			alternator = !alternator;
 			yield return new WaitForSeconds (refreshRate);
 		}
-	}
+	}*/
 }

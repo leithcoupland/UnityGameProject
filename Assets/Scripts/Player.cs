@@ -22,7 +22,7 @@ public class Player : MonoBehaviour {
 		if (playerNum > XCI.GetNumPluggedCtrlrs()){
 			Destroy(gameObject);
 		}
-		Debug.Log(XCI.GetNumPluggedCtrlrs() + " Xbox controllers plugged in.");
+		//Debug.Log(XCI.GetNumPluggedCtrlrs() + " Xbox controllers plugged in.");
 	}
 
 	void Update(){

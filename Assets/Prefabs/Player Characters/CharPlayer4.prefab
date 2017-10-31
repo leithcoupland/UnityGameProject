@@ -2232,7 +2232,7 @@ MonoBehaviour:
   stamRechargeDelay: 1
   movingTurnSpeed: 360
   stationaryTurnSpeed: 180
-  moveSpeedMultiplier: 1
+  moveSpeedMultiplier: 10
   fireRate: 0.2
 --- !u!114 &114812484709294288
 MonoBehaviour:

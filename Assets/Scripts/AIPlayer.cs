@@ -16,27 +16,46 @@ public class AIPlayer : MonoBehaviour {
 		mapNavigator = MapNavigator.instance;
 		dead = false;
 		destination = transform.position;
-		StartCoroutine (CheckPlatformExpired());
+		StartCoroutine (MoveToSafePlatform());
 	}
 
 	void Update(){
-		moveToDestination ();
+		MoveToDestination ();
 	}
 
-	private void moveToDestination(){
+	private void MoveToDestination(){
+		destination = new Vector3 (destination.x, transform.position.y, destination.z);
+		Debug.DrawLine(transform.position, destination, Color.green);
 		Vector3 direction = destination - transform.position;
-
+		playerController.Move (direction);
 	}
 
-	IEnumerator CheckPlatformExpired(){
+	private float SqrDistToNearestSafePlatform(){
+		return (transform.position - mapNavigator.ClosestSafePlatform (transform.position).transform.position).sqrMagnitude;
+	}
+
+	private Vector3 RandomPositionOnPlatform(Vector3 platform){
+		float variance = mapNavigator.platformRadius * 0.9f;
+		Vector3 randomPos = new Vector3 (platform.x + Random.Range(-variance, variance), platform.y, platform.z + Random.Range(-variance, variance));
+		return randomPos;
+	}
+
+	IEnumerator MoveToSafePlatform(){
 		float refreshRate = .2f;
 		while (!dead) {
-			Platform currentPlatform = mapNavigator.ClosestSegment (transform.position).GetComponent<Platform> ();
-			if (currentPlatform != null && currentPlatform.expired) {
-				ArrayList reachablePositions = mapNavigator.ReachableSegments (transform.position);
-				if (reachablePositions.Count > 0) {
-					GameObject destinationPlatform = (GameObject)reachablePositions[Random.Range(0, (int)(reachablePositions.Count - 1))];
-					destination = destinationPlatform.transform.position;
+			if (mapNavigator.ClosestPlatform (transform.position) != null) {
+				Platform currentPlatform = mapNavigator.ClosestPlatform (transform.position);
+				if (currentPlatform.pastExpired || SqrDistToNearestSafePlatform() > mapNavigator.CrossPlatformSqrDist()) {
+					destination = RandomPositionOnPlatform(mapNavigator.ClosestSafePlatform (transform.position).transform.position);
+				} 
+				else if (currentPlatform.expired && mapNavigator.ClosestPlatform(destination).expired) {
+					ArrayList reachablePlatforms = mapNavigator.ReachableSafePlatforms (transform.position);
+					if (reachablePlatforms.Count > 0) {
+						Platform destinationPlatform = (Platform)reachablePlatforms [Random.Range (0, (int)(reachablePlatforms.Count - 1))];
+						destination = RandomPositionOnPlatform (destinationPlatform.transform.position);//destinationPlatform.transform.position;
+					} else {
+						destination = RandomPositionOnPlatform (mapNavigator.ClosestSafePlatform(transform.position).transform.position);//mapNavigator.ClosestSafePlatform (transform.position).transform.position;
+					}
 				}
 			}
 			yield return new WaitForSeconds (refreshRate);

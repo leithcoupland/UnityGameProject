@@ -19,7 +19,6 @@ public class PlayerController : MonoBehaviour
 	public float stamRechargeDelay = 1;
 	private float stamRechargeTimer = 0;
 
-
 	public float movingTurnSpeed = 360;
 	public float stationaryTurnSpeed = 180;
 	public float moveSpeedMultiplier = 1f;
@@ -43,16 +42,26 @@ public class PlayerController : MonoBehaviour
 		isMoving = false;
 	}
 
-	void Update()
-	{
+	void Update(){
+		CheckForDeath ();
+		CheckMovementStatus ();
+		UpdateStamina ();
+		UpdateHealthAndStamBars ();
+	}
+
+	void UpdateHealthAndStamBars(){
 		healthBar.transform.localScale = new Vector3(rigidBody.mass, healthBar.transform.localScale.y, healthBar.transform.localScale.z);
 		staminaBar.transform.localScale = new Vector3(stamina, staminaBar.transform.localScale.y, staminaBar.transform.localScale.z);
+	}
 
+	void CheckForDeath(){
 		if (rigidBody.mass <= 0.01){
 			Destroy(gameObject);
 			AudioManager.instance.PlaySound("death", transform.position);
 		}
+	}
 
+	void UpdateStamina(){
 		stamRechargeTimer += Time.deltaTime;
 		if (stamina < maxStamina && stamRechargeTimer > stamRechargeDelay){
 			stamina += Time.deltaTime/4;
@@ -60,7 +69,9 @@ public class PlayerController : MonoBehaviour
 				stamina = maxStamina;
 			}
 		}
+	}
 
+	void CheckMovementStatus(){
 		if (isMoving) {
 			if (stepTimer < stepDelay){
 				stepTimer += Time.deltaTime;
@@ -113,7 +124,6 @@ public class PlayerController : MonoBehaviour
 		if (!isAiming) {
 			return;
 		}
-
 		Vector3 aim = aimInput;
 		if (aim.magnitude > 1f) {
 			aim.Normalize ();

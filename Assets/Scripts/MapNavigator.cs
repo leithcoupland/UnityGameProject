@@ -4,75 +4,110 @@ using UnityEngine;
 
 public class MapNavigator : MonoBehaviour {
 
-	public GameObject[] mapSegments;
-	public float segmentRadius;
+	public GameObject platformHolder;
+	public float platformRadius;
 	public float radiusThreshold;
-	private Dictionary<GameObject, ArrayList> navGraph;
+	private Platform[] platforms;
+	private Dictionary<Platform, ArrayList> navGraph;
 
 	public static MapNavigator instance;
 
-	public GameObject ClosestSegment(Vector3 position){
-		GameObject closestSeg = null;
-		float minSqrDist = float.MaxValue;
-		for (int i = 0; i < mapSegments.Length; i++) {
-			float sqrDist = (position - mapSegments [i].transform.position).sqrMagnitude;
-			if (sqrDist <= minSqrDist) {
-				minSqrDist = sqrDist;
-				closestSeg = mapSegments [i];
-			}
-		}
-		return closestSeg;
-	}
-
-	public ArrayList ReachableSegments(Vector3 position){
-		return navGraph[ClosestSegment(position)];
-	}
-
 	void Awake(){
 		instance = this;
+		PopulatePlatformArray ();
 	}
 
 	void Start(){
-		navGraph = new Dictionary<GameObject, ArrayList> ();
+		navGraph = new Dictionary<Platform, ArrayList> ();
 		StartCoroutine (MaintainNavGraph ());
+	}
+
+	private void PopulatePlatformArray(){
+		Platform[] p1Platforms = platformHolder.transform.GetChild (0).GetComponentsInChildren<Platform> ();
+		Platform[] p2Platforms = platformHolder.transform.GetChild (1).GetComponentsInChildren<Platform> ();
+		Platform[] p3Platforms = platformHolder.transform.GetChild (2).GetComponentsInChildren<Platform> ();
+		Platform[] p4Platforms = platformHolder.transform.GetChild (3).GetComponentsInChildren<Platform> ();
+
+		platforms = new Platform[p1Platforms.Length + p2Platforms.Length + p3Platforms.Length + p4Platforms.Length];
+
+		p1Platforms.CopyTo (platforms, 0);
+		p2Platforms.CopyTo (platforms, p1Platforms.Length);
+		p3Platforms.CopyTo (platforms, p1Platforms.Length + p2Platforms.Length);
+		p4Platforms.CopyTo (platforms, p1Platforms.Length + p2Platforms.Length + p3Platforms.Length);
 	}
 
 	private void UpdateNavGraph(){
 		navGraph.Clear ();
-		for (int i = 0; i < mapSegments.Length; i++) {
-			for (int j = 0; j < mapSegments.Length; j++) {
-				if (Connected (mapSegments [i], mapSegments [j]) && !ExpiredSegment (mapSegments [j])) {
-					if (navGraph.ContainsKey (mapSegments [i])) {
-						navGraph [mapSegments [i]].Add (mapSegments [j]);
+		for (int i = 0; i < platforms.Length; i++) {
+			for (int j = 0; j < platforms.Length; j++) {
+				if (Connected (platforms [i], platforms [j]) && !platforms [j].expired) {
+					if (navGraph.ContainsKey (platforms [i])) {
+						navGraph [platforms [i]].Add (platforms [j]);
 					} else {
-						ArrayList segList = new ArrayList ();
-						segList.Add (mapSegments [j]);
-						navGraph.Add (mapSegments [i], segList);
+						ArrayList platList = new ArrayList ();
+						platList.Add (platforms [j]);
+						navGraph.Add (platforms [i], platList);
 					}
 				}
 			}
 		}
 	}
 
-	private bool Connected(GameObject segA, GameObject segB){
-		Vector3 posA = segA.transform.position;
-		Vector3 posB = segB.transform.position;
-		float sqrConnectedDist = (segmentRadius * 2 + radiusThreshold) * (segmentRadius * 2 + radiusThreshold);
+	public Platform ClosestPlatform(Vector3 position){
+		Platform closestPlatform = null;
+		float minSqrDist = float.MaxValue;
+		for (int i = 0; i < platforms.Length; i++) {
+			float sqrDist = (position - platforms [i].transform.position).sqrMagnitude;
+			if (sqrDist <= minSqrDist) {
+				minSqrDist = sqrDist;
+				closestPlatform = platforms [i];
+			}
+		}
+		return closestPlatform;
+	}
+
+	public Platform ClosestSafePlatform(Vector3 position){
+		Platform closestPlatform = null;
+		float minSqrDist = float.MaxValue;
+		for (int i = 0; i < platforms.Length; i++) {
+			float sqrDist = (position - platforms [i].transform.position).sqrMagnitude;
+			if (!platforms[i].expired && sqrDist <= minSqrDist) {
+				minSqrDist = sqrDist;
+				closestPlatform = platforms [i];
+			}
+		}
+		return closestPlatform;
+	}
+
+	public ArrayList ReachablePlatforms(Vector3 position){
+		return navGraph[ClosestPlatform(position)];
+	}
+
+	public ArrayList ReachableSafePlatforms(Vector3 position){
+		ArrayList allConnectedPlatforms = ReachablePlatforms (position);
+		ArrayList safeConnectedPlatforms = new ArrayList ();
+
+		foreach (Platform platform in allConnectedPlatforms) {
+			if (!platform.expired) {
+				safeConnectedPlatforms.Add (platform);
+			}
+		}
+		return safeConnectedPlatforms;
+	}
+
+	private bool Connected(Platform platA, Platform platB){
+		Vector3 posA = platA.transform.position;
+		Vector3 posB = platB.transform.position;
+		float sqrConnectedDist = (platformRadius * 2 + radiusThreshold) * (platformRadius * 2 + radiusThreshold);
 		return ((posA - posB).sqrMagnitude <= sqrConnectedDist);
 	}
 
-	private bool ExpiredSegment(GameObject segment){
-		if (segment.GetComponent<Platform> () != null) {
-			Platform p = segment.GetComponent<Platform> ();
-			if (p.expired) {
-				return true;
-			}
-		}
-		return false;
+	public float CrossPlatformSqrDist(){
+		return (2 * platformRadius) * (2 * platformRadius);
 	}
 
 	IEnumerator MaintainNavGraph(){
-		float refreshRate = .5f;
+		float refreshRate = 1f;
 		UpdateNavGraph ();
 		yield return new WaitForSeconds (refreshRate);
 	}
