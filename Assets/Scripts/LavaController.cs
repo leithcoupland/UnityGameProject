@@ -4,14 +4,12 @@ using UnityEngine;
 
 public class LavaController : MonoBehaviour {
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Move lava game object up accordingly
-	void Update ()
-    {
-        this.transform.Translate(Vector3.forward * Time.deltaTime);
+	float speed = 1;
+
+	void LateUpdate(){
+		transform.position += new Vector3(0, 0, Time.deltaTime * speed);
+		if (transform.position.z >= 200) {
+			transform.position += new Vector3(0, 0, -400);
+		}
 	}
 }

@@ -49,7 +49,7 @@ Material:
         name: _EmissionMap
       second:
         m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
+        m_Scale: {x: 4, y: 4}
         m_Offset: {x: 0, y: 0}
     - first:
         name: _LavaTex
@@ -61,7 +61,7 @@ Material:
         name: _MainTex
       second:
         m_Texture: {fileID: 512863391, guid: 5fc1e0bc858261948b3266e8d966a779, type: 3}
-        m_Scale: {x: 1, y: 1}
+        m_Scale: {x: 4, y: 4}
         m_Offset: {x: 0, y: 0}
     - first:
         name: _MetallicGlossMap
