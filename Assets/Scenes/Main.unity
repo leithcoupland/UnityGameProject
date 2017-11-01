@@ -104,7 +104,6 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4305386}
-  - component: {fileID: 4305387}
   m_Layer: 0
   m_Name: Player3Info
   m_TagString: Untagged
@@ -130,18 +129,6 @@ Transform:
   m_Father: {fileID: 1424186335}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4305387
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 4305385}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c2ca1822a9d68cb45bc01fdd781698c4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerNum: 3
 --- !u!1001 &20692479
 Prefab:
   m_ObjectHideFlags: 0
@@ -4406,11 +4393,6 @@ Prefab:
       propertyPath: staminaBar
       value: 
       objectReference: {fileID: 1390160753}
-    - target: {fileID: 54193550987349244, guid: f4dbfe0fc5899ff4b8a6738af3d20c9b,
-        type: 2}
-      propertyPath: m_UseGravity
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f4dbfe0fc5899ff4b8a6738af3d20c9b, type: 2}
   m_IsPrefabParent: 0
@@ -5112,9 +5094,10 @@ Prefab:
       propertyPath: staminaBar
       value: 
       objectReference: {fileID: 977106633}
-    - target: {fileID: 1244854736004306, guid: 33f546bd157b4ad4d9153eeba7bd5d6c, type: 2}
-      propertyPath: m_IsActive
-      value: 1
+    - target: {fileID: 114151113794580968, guid: 33f546bd157b4ad4d9153eeba7bd5d6c,
+        type: 2}
+      propertyPath: moveSpeedMultiplier
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 33f546bd157b4ad4d9153eeba7bd5d6c, type: 2}
@@ -14390,6 +14373,12 @@ GameObject:
   m_PrefabParentObject: {fileID: 1815457940732406, guid: f4dbfe0fc5899ff4b8a6738af3d20c9b,
     type: 2}
   m_PrefabInternal: {fileID: 292069490}
+--- !u!114 &757099413 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114567981263228352, guid: f4dbfe0fc5899ff4b8a6738af3d20c9b,
+    type: 2}
+  m_PrefabInternal: {fileID: 292069490}
+  m_Script: {fileID: 11500000, guid: 6b90a0e147afec449ae88fe9aae1df13, type: 3}
 --- !u!1001 &771876432
 Prefab:
   m_ObjectHideFlags: 0
@@ -15250,6 +15239,12 @@ GameObject:
   m_PrefabParentObject: {fileID: 1944427403519502, guid: 65f2c0edc10f97d499c682521c0e52ca,
     type: 2}
   m_PrefabInternal: {fileID: 1975041008}
+--- !u!114 &897642915 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114142365771312744, guid: 65f2c0edc10f97d499c682521c0e52ca,
+    type: 2}
+  m_PrefabInternal: {fileID: 1975041008}
+  m_Script: {fileID: 11500000, guid: 6b90a0e147afec449ae88fe9aae1df13, type: 3}
 --- !u!1 &900800245
 GameObject:
   m_ObjectHideFlags: 0
@@ -15287,6 +15282,12 @@ GameObject:
   m_PrefabParentObject: {fileID: 1642938635289828, guid: 33f546bd157b4ad4d9153eeba7bd5d6c,
     type: 2}
   m_PrefabInternal: {fileID: 440684039}
+--- !u!114 &915678339 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114151113794580968, guid: 33f546bd157b4ad4d9153eeba7bd5d6c,
+    type: 2}
+  m_PrefabInternal: {fileID: 440684039}
+  m_Script: {fileID: 11500000, guid: 6b90a0e147afec449ae88fe9aae1df13, type: 3}
 --- !u!1 &953521742
 GameObject:
   m_ObjectHideFlags: 0
@@ -18495,6 +18496,11 @@ Prefab:
       propertyPath: staminaBar
       value: 
       objectReference: {fileID: 151636791}
+    - target: {fileID: 114594093193473546, guid: b7c3b9ebfb525ca4a8d72772e1bd85ed,
+        type: 2}
+      propertyPath: moveSpeedMultiplier
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b7c3b9ebfb525ca4a8d72772e1bd85ed, type: 2}
   m_IsPrefabParent: 0
@@ -18740,7 +18746,6 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 1113685519}
-  - component: {fileID: 1113685520}
   m_Layer: 0
   m_Name: Player2Info
   m_TagString: Untagged
@@ -18766,18 +18771,6 @@ Transform:
   m_Father: {fileID: 1424186335}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1113685520
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1113685518}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c2ca1822a9d68cb45bc01fdd781698c4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerNum: 2
 --- !u!1001 &1126014916
 Prefab:
   m_ObjectHideFlags: 0
@@ -27412,7 +27405,6 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 1730660001}
-  - component: {fileID: 1730660002}
   m_Layer: 0
   m_Name: Player4Info
   m_TagString: Untagged
@@ -27438,18 +27430,6 @@ Transform:
   m_Father: {fileID: 1424186335}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1730660002
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1730660000}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c2ca1822a9d68cb45bc01fdd781698c4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerNum: 4
 --- !u!1001 &1731187113
 Prefab:
   m_ObjectHideFlags: 0
@@ -27514,7 +27494,6 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 1746051233}
-  - component: {fileID: 1746051234}
   m_Layer: 0
   m_Name: Player1Info
   m_TagString: Untagged
@@ -27540,18 +27519,6 @@ Transform:
   m_Father: {fileID: 1424186335}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1746051234
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1746051232}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c2ca1822a9d68cb45bc01fdd781698c4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerNum: 1
 --- !u!4 &1751226012 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4757768341297322, guid: c1c032ef46a491842b22d5561c159d65,
@@ -28336,6 +28303,11 @@ Prefab:
       propertyPath: staminaBar
       value: 
       objectReference: {fileID: 62820066}
+    - target: {fileID: 114142365771312744, guid: 65f2c0edc10f97d499c682521c0e52ca,
+        type: 2}
+      propertyPath: moveSpeedMultiplier
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 65f2c0edc10f97d499c682521c0e52ca, type: 2}
   m_IsPrefabParent: 0
@@ -28847,6 +28819,12 @@ GameObject:
   m_PrefabParentObject: {fileID: 1582052325613000, guid: b7c3b9ebfb525ca4a8d72772e1bd85ed,
     type: 2}
   m_PrefabInternal: {fileID: 1028325849}
+--- !u!114 &2063078203 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114594093193473546, guid: b7c3b9ebfb525ca4a8d72772e1bd85ed,
+    type: 2}
+  m_PrefabInternal: {fileID: 1028325849}
+  m_Script: {fileID: 11500000, guid: 6b90a0e147afec449ae88fe9aae1df13, type: 3}
 --- !u!4 &2088710726 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4757768341297322, guid: c1c032ef46a491842b22d5561c159d65,
@@ -31708,3 +31686,48 @@ ParticleSystem:
       minColor: {r: 1, g: 1, b: 1, a: 1}
       maxColor: {r: 1, g: 1, b: 1, a: 1}
       minMaxState: 0
+--- !u!1 &2145351563
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 2145351565}
+  - component: {fileID: 2145351564}
+  m_Layer: 0
+  m_Name: PlayerManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &2145351564
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2145351563}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6b4e7ade4d21a4549bba41a4a7c89e3e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  numPlayers: 4
+  player1: {fileID: 757099413}
+  player2: {fileID: 915678339}
+  player3: {fileID: 897642915}
+  player4: {fileID: 2063078203}
+--- !u!4 &2145351565
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2145351563}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 12
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

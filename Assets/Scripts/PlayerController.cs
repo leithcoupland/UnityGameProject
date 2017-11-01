@@ -30,6 +30,14 @@ public class PlayerController : MonoBehaviour
 	private float stepDelay = 0.4f;
 	private float stepTimer = 0f;
 
+	Vector3 inputVelocity;
+	Vector3 pushVelocity;
+	float friction = .05f;
+	float squaredFrictionThreshold = .01f;
+
+	float hp = 100;
+	float maxHp = 100;
+
 	void Start(){
 		animator = GetComponent<Animator>();
 		rigidBody = GetComponent<Rigidbody>();
@@ -43,22 +51,35 @@ public class PlayerController : MonoBehaviour
 	}
 
 	void Update(){
-		CheckForDeath ();
 		CheckMovementStatus ();
 		UpdateStamina ();
 		UpdateHealthAndStamBars ();
 	}
 
+	void FixedUpdate(){
+		Vector3 velocity = (inputVelocity + pushVelocity) * Time.fixedDeltaTime;
+		rigidBody.MovePosition (rigidBody.position + velocity);
+		pushVelocity = pushVelocity * (1 / (friction+1));
+		if (pushVelocity.sqrMagnitude <= squaredFrictionThreshold) {
+			pushVelocity = Vector3.zero;
+		}
+	}
+
 	void UpdateHealthAndStamBars(){
-		healthBar.transform.localScale = new Vector3(rigidBody.mass, healthBar.transform.localScale.y, healthBar.transform.localScale.z);
-		staminaBar.transform.localScale = new Vector3(stamina, staminaBar.transform.localScale.y, staminaBar.transform.localScale.z);
+		//healthBar.transform.localScale = new Vector3(rigidBody.mass, healthBar.transform.localScale.y, healthBar.transform.localScale.z);
+		healthBar.transform.localScale = new Vector3(hp/maxHp, healthBar.transform.localScale.y, healthBar.transform.localScale.z);
+		staminaBar.transform.localScale = new Vector3(stamina/maxStamina, staminaBar.transform.localScale.y, staminaBar.transform.localScale.z);
 	}
 
 	void CheckForDeath(){
-		if (rigidBody.mass <= 0.01){
+		if (hp <= 0) {
 			Destroy(gameObject);
 			AudioManager.instance.PlaySound("death", transform.position);
 		}
+		/*if (rigidBody.mass <= 0.01){
+			Destroy(gameObject);
+			AudioManager.instance.PlaySound("death", transform.position);
+		}*/
 	}
 
 	void UpdateStamina(){
@@ -103,19 +124,16 @@ public class PlayerController : MonoBehaviour
 		}
 	}
 
-	public void Move(Vector3 moveInput){
-		isMoving = moveInput.magnitude > 0;
-		if (!isMoving) {
-			return;
+	public void Move(Vector3 _inputVelocity){
+		if (_inputVelocity.magnitude > 1f) {
+			_inputVelocity = _inputVelocity.normalized;
 		}
-		Vector3 move = moveInput;
-		if (move.magnitude > 1f) {
-			move.Normalize ();
-		}      
-		animator.SetBool("isCasting", false);
-		transform.position += (move * Time.deltaTime * moveSpeedMultiplier);
+		if (isMoving = _inputVelocity.magnitude > 0){
+			animator.SetBool("isCasting", false);
+		}
+		inputVelocity = _inputVelocity * moveSpeedMultiplier;
 		if (!isAiming) {
-			FaceDirection (move);
+			FaceDirection (_inputVelocity);
 		}
 	}
 
@@ -132,6 +150,18 @@ public class PlayerController : MonoBehaviour
 		FaceDirection (aim);
 	}
 
+	public void Push (Vector3 _pushVelocity){
+		float missingHPCoefficient = 1 - (hp/maxHp); // 0 for full hp, 1 for no hp.
+		float pushAdjustment = 2 + 4 * (missingHPCoefficient);
+		pushVelocity += _pushVelocity * pushAdjustment;
+		AudioManager.instance.PlaySound ("grunt", transform.position);
+	}
+
+	public void Damage(float damage){
+		hp -= damage;
+		CheckForDeath ();
+	}
+
 	void FaceDirection(Vector3 direction){
 		if (animator.GetCurrentAnimatorStateInfo(0).IsName("CastPrimary") || animator.GetCurrentAnimatorStateInfo(0).IsName("CastAOE")){
 			return;
@@ -142,11 +172,5 @@ public class PlayerController : MonoBehaviour
 		float turnAmount = Mathf.Atan2(dir.x, dir.z);
 		float turnSpeed = Mathf.Lerp(stationaryTurnSpeed, movingTurnSpeed, dir.z);
 		transform.Rotate(0, turnAmount * turnSpeed * Time.deltaTime, 0);
-	}
-
-	void OnTriggerStay(Collider collisionInfo){
-		if (collisionInfo.gameObject.tag == "Fire"){
-			GetComponent<Rigidbody>().mass -= 0.05f * Time.deltaTime * 1;
-		}
 	}
 }
