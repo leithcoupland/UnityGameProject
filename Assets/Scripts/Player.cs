@@ -20,7 +20,8 @@ public class Player : MonoBehaviour {
 		case XboxController.Fourth: playerNum = 4; break;
 		}
 		if (playerNum > XCI.GetNumPluggedCtrlrs()){
-			Destroy(gameObject);
+			GetComponent<AIPlayer> ().enabled = true;
+			GetComponent<Player> ().enabled = false;
 		}
 		//Debug.Log(XCI.GetNumPluggedCtrlrs() + " Xbox controllers plugged in.");
 	}

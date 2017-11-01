@@ -720,6 +720,7 @@ GameObject:
   - component: {fileID: 54701918450320782}
   - component: {fileID: 136271528335060456}
   - component: {fileID: 114109992516975416}
+  - component: {fileID: 114915505304392660}
   - component: {fileID: 114594093193473546}
   m_Layer: 0
   m_Name: CharPlayer4
@@ -2259,6 +2260,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2dc857748b1cf55438a70335f964bfda, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &114915505304392660
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1582052325613000}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4b1f442278b9f04cadbdf781f84d5f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!136 &136271528335060456
