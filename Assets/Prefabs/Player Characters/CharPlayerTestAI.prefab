@@ -2129,7 +2129,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4b1f442278b9f04cadbdf781f84d5f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  testDest: {fileID: 0}
 --- !u!114 &114188483227896270
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2238,8 +2237,13 @@ MonoBehaviour:
   firingPoint: {fileID: 1557622474111222}
   projectile: {fileID: 114350766927025810, guid: d13aeb960f0b81546828d0f7279818bd,
     type: 2}
+  collisionMask:
+    serializedVersion: 2
+    m_Bits: 256
+  lavaBurnEffect: {fileID: 1254696724539664, guid: aa7a384cb738325458b820c700466885,
+    type: 2}
   maxStamina: 1
-  attackCost: 0.22
+  attackCost: 0.12
   stamRechargeDelay: 1
   movingTurnSpeed: 360
   stationaryTurnSpeed: 180

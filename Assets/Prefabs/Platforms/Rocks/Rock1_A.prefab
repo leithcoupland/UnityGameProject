@@ -22,7 +22,8 @@ GameObject:
   - component: {fileID: 33900497523860092}
   - component: {fileID: 23840813608705240}
   - component: {fileID: 114630650011398780}
-  m_Layer: 0
+  - component: {fileID: 65932151562066620}
+  m_Layer: 8
   m_Name: Rock1_A
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -80,6 +81,18 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1809999129292286}
   m_Mesh: {fileID: 4300000, guid: 2eb9f3337c0b6f8478b791c6c7a21940, type: 3}
+--- !u!65 &65932151562066620
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1809999129292286}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 16.17189, y: 9.210849, z: 16.422348}
+  m_Center: {x: 0.10432482, y: 2.9278605, z: 0.1124959}
 --- !u!114 &114630650011398780
 MonoBehaviour:
   m_ObjectHideFlags: 1

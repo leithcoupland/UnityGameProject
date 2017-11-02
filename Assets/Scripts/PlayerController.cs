@@ -8,6 +8,8 @@ public class PlayerController : MonoBehaviour
 	public GameObject staminaBar;
 	public GameObject firingPoint;
 	public Projectile projectile;
+	public LayerMask collisionMask;
+	public GameObject lavaBurnEffect;
 
 	Rigidbody rigidBody;
 	Animator animator;
@@ -38,7 +40,7 @@ public class PlayerController : MonoBehaviour
 	float hp = 100;
 	float maxHp = 100;
 
-	void Start(){
+	void Start(){ 
 		animator = GetComponent<Animator>();
 		rigidBody = GetComponent<Rigidbody>();
 		if (GetComponent<Player>() != null) {
@@ -59,6 +61,7 @@ public class PlayerController : MonoBehaviour
 	void FixedUpdate(){
 		Vector3 velocity = (inputVelocity + pushVelocity) * Time.fixedDeltaTime;
 		rigidBody.MovePosition (rigidBody.position + velocity);
+		VerticalCollisions ();
 		pushVelocity = pushVelocity * (1 / (friction+1));
 		if (pushVelocity.sqrMagnitude <= squaredFrictionThreshold) {
 			pushVelocity = Vector3.zero;
@@ -66,20 +69,15 @@ public class PlayerController : MonoBehaviour
 	}
 
 	void UpdateHealthAndStamBars(){
-		//healthBar.transform.localScale = new Vector3(rigidBody.mass, healthBar.transform.localScale.y, healthBar.transform.localScale.z);
 		healthBar.transform.localScale = new Vector3(hp/maxHp, healthBar.transform.localScale.y, healthBar.transform.localScale.z);
 		staminaBar.transform.localScale = new Vector3(stamina/maxStamina, staminaBar.transform.localScale.y, staminaBar.transform.localScale.z);
 	}
 
 	void CheckForDeath(){
 		if (hp <= 0) {
-			Destroy(gameObject);
 			AudioManager.instance.PlaySound("death", transform.position);
+			Destroy(gameObject);
 		}
-		/*if (rigidBody.mass <= 0.01){
-			Destroy(gameObject);
-			AudioManager.instance.PlaySound("death", transform.position);
-		}*/
 	}
 
 	void UpdateStamina(){
@@ -172,5 +170,18 @@ public class PlayerController : MonoBehaviour
 		float turnAmount = Mathf.Atan2(dir.x, dir.z);
 		float turnSpeed = Mathf.Lerp(stationaryTurnSpeed, movingTurnSpeed, dir.z);
 		transform.Rotate(0, turnAmount * turnSpeed * Time.deltaTime, 0);
+	}
+
+	void VerticalCollisions(){
+		RaycastHit hit;
+		if (Physics.Raycast(transform.position + Vector3.up * 5, Vector3.up * -20, out hit, 50, collisionMask)){
+			if (hit.transform.gameObject.GetComponent<Hazard> () != null) {
+				hit.transform.gameObject.GetComponent<Hazard> ().ApplyEffect (this);
+				lavaBurnEffect.gameObject.SetActive (true);
+			} else {
+				lavaBurnEffect.gameObject.SetActive (false);
+			}
+		}
+		Debug.DrawRay (transform.position + Vector3.up * 5, Vector3.up * -20, Color.red);
 	}
 }
