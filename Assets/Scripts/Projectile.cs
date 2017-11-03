@@ -8,11 +8,11 @@ public class Projectile : MonoBehaviour{
     public float speed;
 	public float force = 4;
 	public float damage = 5;
-    private int playerNo;
+	private int playerNum;
 
     //Set player number of projectile to stop it from colliding with its own player.
-    public void setPlayerNo(int _playerNo){
-		playerNo = _playerNo;
+    public void setPlayerNo(int _playerNum){
+		playerNum = _playerNum;
     }
 
     //Set speed projectile is translated.
@@ -31,12 +31,12 @@ public class Projectile : MonoBehaviour{
     //Sound is played to indicate this.
     //The object is then destroyed.
 	void OnCollisionEnter(Collision _col){
-		if (_col.gameObject.tag == "Player" && _col.gameObject.GetComponent<PlayerController>().playerNum != playerNo){
+		if (_col.gameObject.tag == "Player" && _col.gameObject.GetComponent<PlayerController>().playerNum != playerNum){
 			PlayerController player = _col.gameObject.GetComponent<PlayerController> ();
 			Vector3 dir = new Vector3(player.transform.position.x - transform.position.x, 0, player.transform.position.z - transform.position.z);
             dir = dir.normalized;
-			player.Damage (damage);
-			player.Push (dir * force);
+			player.Damage (damage, playerNum);
+			player.Push (dir * force, playerNum);
             Destroy(gameObject);
         }
     }

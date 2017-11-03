@@ -39,6 +39,7 @@ public class PlayerController : MonoBehaviour
 
 	float hp = 100;
 	float maxHp = 100;
+	int lastDamagedBy;
 
 	void Start(){ 
 		animator = GetComponent<Animator>();
@@ -50,6 +51,7 @@ public class PlayerController : MonoBehaviour
 		}
 		stamina = maxStamina;
 		isMoving = false;
+		lastDamagedBy = playerNum;
 	}
 
 	void Update(){
@@ -76,6 +78,7 @@ public class PlayerController : MonoBehaviour
 	void CheckForDeath(){
 		if (hp <= 0) {
 			AudioManager.instance.PlaySound("death", transform.position);
+			PlayerManager.instance.PlayerDeath (playerNum, lastDamagedBy);
 			Destroy(gameObject);
 		}
 	}
@@ -148,7 +151,8 @@ public class PlayerController : MonoBehaviour
 		FaceDirection (aim);
 	}
 
-	public void Push (Vector3 _pushVelocity){
+	public void Push (Vector3 _pushVelocity, int attackingPlayerNum){
+		lastDamagedBy = attackingPlayerNum;
 		float missingHPCoefficient = 1 - (hp/maxHp); // 0 for full hp, 1 for no hp.
 		float pushAdjustment = 2 + 4 * (missingHPCoefficient);
 		pushVelocity += _pushVelocity * pushAdjustment;
@@ -158,6 +162,11 @@ public class PlayerController : MonoBehaviour
 	public void Damage(float damage){
 		hp -= damage;
 		CheckForDeath ();
+	}
+
+	public void Damage(float damage, int attackingPlayerNum){
+		lastDamagedBy = attackingPlayerNum;
+		Damage (damage);
 	}
 
 	void FaceDirection(Vector3 direction){
