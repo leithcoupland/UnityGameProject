@@ -690,7 +690,6 @@ GameObject:
   - component: {fileID: 4244712416122202}
   - component: {fileID: 198892471623771870}
   - component: {fileID: 199886204220755984}
-  - component: {fileID: 114575807965867828}
   m_Layer: 0
   m_Name: FlamesParticleEffect
   m_TagString: Untagged
@@ -874,7 +873,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4881760121366130}
   - component: {fileID: 33439322268822888}
-  - component: {fileID: 135606977537653992}
   - component: {fileID: 23691577040057518}
   m_Layer: 0
   m_Name: AimReticle
@@ -1238,7 +1236,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1944427403519502}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -6.39, y: 1.56, z: -10.54}
+  m_LocalPosition: {x: -8, y: 1.7, z: -8}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_Children:
   - {fileID: 4484997554988850}
@@ -2414,17 +2412,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   xbController: 3
---- !u!114 &114575807965867828
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1568124465761042}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 0}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &114585949683453896
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2452,18 +2439,6 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
---- !u!135 &135606977537653992
-SphereCollider:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1813979039707414}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!136 &136728774573127246
 CapsuleCollider:
   m_ObjectHideFlags: 1
@@ -4854,7 +4829,7 @@ ParticleSystem:
   LightsModule:
     enabled: 1
     ratio: 1
-    light: {fileID: 108000013609061350, guid: fa35d75604d172d48b7a6b62a07c7dbf, type: 2}
+    light: {fileID: 0}
     randomDistribution: 1
     color: 1
     range: 1

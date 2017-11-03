@@ -10,15 +10,17 @@ public class Player : MonoBehaviour {
 	public int playerNum { get; private set; }
 	PlayerController playerController;
 
-	void Start(){
-		playerController = GetComponent<PlayerController> ();
-
+	void Awake(){
 		switch (xbController){
 			case XboxController.First: playerNum = 1; break;
 			case XboxController.Second: playerNum = 2; break;
 			case XboxController.Third: playerNum = 3; break;
 			case XboxController.Fourth: playerNum = 4; break;
 		}
+	}
+
+	void Start(){
+		playerController = GetComponent<PlayerController> ();
 		if (playerNum > PlayerManager.instance.numPlayers) {
 			Destroy (gameObject);
 		}

@@ -9,7 +9,6 @@ public class AIPlayer : MonoBehaviour {
 	MapNavigator mapNavigator;
 	Vector3 destination;
 	bool dead;
-	public int playerNum { get; private set; }
 
 	void Start(){
 		playerController = GetComponent<PlayerController> ();
