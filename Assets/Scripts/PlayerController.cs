@@ -44,11 +44,7 @@ public class PlayerController : MonoBehaviour
 	void Start(){ 
 		animator = GetComponent<Animator>();
 		rigidBody = GetComponent<Rigidbody>();
-		if (GetComponent<Player>() != null) {
-			playerNum = GetComponent<Player> ().playerNum;
-		} else if (GetComponent<AIPlayer>() != null) {
-			playerNum = GetComponent<AIPlayer> ().playerNum;
-		}
+		playerNum = GetComponent<Player> ().playerNum;
 		stamina = maxStamina;
 		isMoving = false;
 		lastDamagedBy = playerNum;

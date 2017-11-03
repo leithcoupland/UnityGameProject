@@ -122,6 +122,12 @@ MonoBehaviour:
     - {fileID: 8300000, guid: 2c8ecd41ea4e49542bb27a087d3e9215, type: 3}
     - {fileID: 8300000, guid: 74a19f86ad621a4459dfd467a35839ae, type: 3}
     - {fileID: 8300000, guid: 4cd4e26c585b72d438e67b594cfb6a5c, type: 3}
+  - groupID: death
+    group:
+    - {fileID: 8300000, guid: 908c191e47b6d054f98e3185a61c0412, type: 3}
+  - groupID: UI
+    group:
+    - {fileID: 8300000, guid: 1df7461e1c78d1141ac424c67aa0e3cc, type: 3}
 --- !u!114 &114418758199596276
 MonoBehaviour:
   m_ObjectHideFlags: 1

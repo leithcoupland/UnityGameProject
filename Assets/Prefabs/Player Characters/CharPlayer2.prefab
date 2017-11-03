@@ -534,7 +534,6 @@ GameObject:
   - component: {fileID: 4884116138014492}
   - component: {fileID: 198391998495669556}
   - component: {fileID: 199028091593660388}
-  - component: {fileID: 114172514626591918}
   m_Layer: 0
   m_Name: FlamesParticleEffect
   m_TagString: Untagged
@@ -895,7 +894,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4309830524594454}
   - component: {fileID: 33398143173740744}
-  - component: {fileID: 135919450895328568}
   - component: {fileID: 23604584098327438}
   m_Layer: 0
   m_Name: AimReticle
@@ -1253,7 +1251,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1642938635289828}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -6.39, y: 1.56, z: 0}
+  m_LocalPosition: {x: -8, y: 1.7, z: 8}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_Children:
   - {fileID: 4261308716087956}
@@ -2283,17 +2281,6 @@ MonoBehaviour:
   stationaryTurnSpeed: 180
   moveSpeedMultiplier: 8
   fireRate: 0.2
---- !u!114 &114172514626591918
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1407126309542934}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 0}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &114199592173329370
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2452,18 +2439,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   xbController: 2
---- !u!135 &135919450895328568
-SphereCollider:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1767802420580616}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!136 &136734223769568100
 CapsuleCollider:
   m_ObjectHideFlags: 1
@@ -7359,7 +7334,7 @@ ParticleSystem:
   LightsModule:
     enabled: 1
     ratio: 1
-    light: {fileID: 108000013609061350, guid: fa35d75604d172d48b7a6b62a07c7dbf, type: 2}
+    light: {fileID: 0}
     randomDistribution: 1
     color: 1
     range: 1

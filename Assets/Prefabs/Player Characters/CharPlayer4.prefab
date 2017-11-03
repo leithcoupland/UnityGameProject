@@ -384,7 +384,6 @@ GameObject:
   - component: {fileID: 4299785112563212}
   - component: {fileID: 198967095863122544}
   - component: {fileID: 199614278859853556}
-  - component: {fileID: 114452301400538644}
   m_Layer: 0
   m_Name: FlamesParticleEffect
   m_TagString: Untagged
@@ -1045,7 +1044,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4075783581776276}
   - component: {fileID: 33115454350485024}
-  - component: {fileID: 135600567092170410}
   - component: {fileID: 23959375902752590}
   m_Layer: 0
   m_Name: AimReticle
@@ -1956,7 +1954,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1582052325613000}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 4.44, y: 1.56, z: -9.43}
+  m_LocalPosition: {x: 8, y: 1.7, z: -8}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_Children:
   - {fileID: 4830396750322006}
@@ -2376,17 +2374,6 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
---- !u!114 &114452301400538644
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1325392669378644}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 0}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &114594093193473546
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2452,18 +2439,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4b1f442278b9f04cadbdf781f84d5f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!135 &135600567092170410
-SphereCollider:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1920276658054206}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!136 &136271528335060456
 CapsuleCollider:
   m_ObjectHideFlags: 1
@@ -7431,7 +7406,7 @@ ParticleSystem:
   LightsModule:
     enabled: 1
     ratio: 1
-    light: {fileID: 108000013609061350, guid: fa35d75604d172d48b7a6b62a07c7dbf, type: 2}
+    light: {fileID: 0}
     randomDistribution: 1
     color: 1
     range: 1
