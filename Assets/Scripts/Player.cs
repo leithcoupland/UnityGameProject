@@ -21,7 +21,7 @@ public class Player : MonoBehaviour {
 
 	void Start(){
 		playerController = GetComponent<PlayerController> ();
-		if (playerNum > PlayerManager.instance.numPlayers) {
+		if (playerNum > GameRoundManager.instance.numPlayers) {
 			Destroy (gameObject);
 		}
 		else if (playerNum > XCI.GetNumPluggedCtrlrs()){

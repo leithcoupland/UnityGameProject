@@ -74,7 +74,7 @@ public class PlayerController : MonoBehaviour
 	void CheckForDeath(){
 		if (hp <= 0) {
 			AudioManager.instance.PlaySound("death", transform.position);
-			PlayerManager.instance.PlayerDeath (playerNum, lastDamagedBy);
+			GameRoundManager.instance.PlayerDeath (playerNum, lastDamagedBy);
 			Destroy(gameObject);
 		}
 	}
@@ -157,6 +157,7 @@ public class PlayerController : MonoBehaviour
 
 	public void Damage(float damage){
 		hp -= damage;
+		GameRoundManager.instance.AddScore (lastDamagedBy, damage);
 		CheckForDeath ();
 	}
 

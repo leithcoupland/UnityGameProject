@@ -732,7 +732,6 @@ GameObject:
   - component: {fileID: 22470916}
   - component: {fileID: 22290916}
   - component: {fileID: 11404936}
-  - component: {fileID: 11465942}
   - component: {fileID: 22539526}
   m_Layer: 5
   m_Name: OptionsPanel
@@ -802,7 +801,6 @@ GameObject:
   - component: {fileID: 22405856}
   - component: {fileID: 22215648}
   - component: {fileID: 11489226}
-  - component: {fileID: 11432168}
   - component: {fileID: 22505456}
   m_Layer: 5
   m_Name: PausePanel
@@ -1113,7 +1111,7 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 11432168}
+      - m_Target: {fileID: 0}
         m_MethodName: SetMusicLevel
         m_Mode: 0
         m_Arguments:
@@ -1406,18 +1404,6 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
---- !u!114 &11432168
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 198696}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d1e7f18868b2549738d2c110db32ca9e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  mainMixer: {fileID: 24100000, guid: 0ac7fb39e445048d89688f69c2a1839a, type: 2}
 --- !u!114 &11433024
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1549,7 +1535,7 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 11432168}
+      - m_Target: {fileID: 0}
         m_MethodName: SetSfxLevel
         m_Mode: 0
         m_Arguments:
@@ -2044,18 +2030,6 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
---- !u!114 &11465942
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 191734}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d1e7f18868b2549738d2c110db32ca9e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  mainMixer: {fileID: 24100000, guid: 0ac7fb39e445048d89688f69c2a1839a, type: 2}
 --- !u!114 &11467432
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2191,7 +2165,7 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 11432168}
+      - m_Target: {fileID: 0}
         m_MethodName: SetSfxLevel
         m_Mode: 0
         m_Arguments:
@@ -2558,7 +2532,7 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 11432168}
+      - m_Target: {fileID: 0}
         m_MethodName: SetMusicLevel
         m_Mode: 0
         m_Arguments:
