@@ -8,6 +8,8 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Menu.unity
   - enabled: 1
+    path: Assets/Scenes/AbilitySelection.unity
+  - enabled: 1
     path: Assets/Scenes/Main.unity
   - enabled: 1
-    path: Assets/Scenes/EndOfRound.unity
+    path: Assets/Scenes/ScoreScreen.unity
