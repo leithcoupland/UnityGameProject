@@ -124,7 +124,9 @@ public class FollowPlayers : MonoBehaviour {
 
         }
 
-        transform.position = Vector3.Lerp(transform.position, new Vector3((xMax + xMin) / div, transform.position.y, ((zMax + zMin) / div) / 2), 0.1f);
+		if (div != 0) {
+			transform.position = Vector3.Lerp (transform.position, new Vector3 ((xMax + xMin) / div, transform.position.y, ((zMax + zMin) / div) / 2), 0.1f);
+		}
        
     }
     }

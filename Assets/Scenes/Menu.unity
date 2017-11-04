@@ -11751,21 +11751,6 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 114360898358173074, guid: 4e4c51453bb4eb2449af81a586a6aae9,
-        type: 2}
-      propertyPath: soundGroups.Array.size
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 114360898358173074, guid: 4e4c51453bb4eb2449af81a586a6aae9,
-        type: 2}
-      propertyPath: soundGroups.Array.data[3].group.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114360898358173074, guid: 4e4c51453bb4eb2449af81a586a6aae9,
-        type: 2}
-      propertyPath: soundGroups.Array.data[4].group.Array.size
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 4653386950306986, guid: 4e4c51453bb4eb2449af81a586a6aae9, type: 2}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -11798,55 +11783,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 2
       objectReference: {fileID: 0}
-    - target: {fileID: 1039268987818022, guid: 4e4c51453bb4eb2449af81a586a6aae9, type: 2}
-      propertyPath: m_Name
-      value: Audio Manager
-      objectReference: {fileID: 0}
-    - target: {fileID: 114360898358173074, guid: 4e4c51453bb4eb2449af81a586a6aae9,
-        type: 2}
-      propertyPath: soundGroups.Array.data[3].groupID
-      value: death
-      objectReference: {fileID: 0}
-    - target: {fileID: 114360898358173074, guid: 4e4c51453bb4eb2449af81a586a6aae9,
-        type: 2}
-      propertyPath: soundGroups.Array.data[3].group.Array.data[0]
-      value: 
-      objectReference: {fileID: 8300000, guid: 908c191e47b6d054f98e3185a61c0412, type: 3}
-    - target: {fileID: 114360898358173074, guid: 4e4c51453bb4eb2449af81a586a6aae9,
-        type: 2}
-      propertyPath: soundGroups.Array.data[3].group.Array.data[1]
-      value: 
-      objectReference: {fileID: 8300000, guid: ebc5a40fd6991644d908443bcc7a3150, type: 3}
-    - target: {fileID: 114360898358173074, guid: 4e4c51453bb4eb2449af81a586a6aae9,
-        type: 2}
-      propertyPath: soundGroups.Array.data[3].group.Array.data[2]
-      value: 
-      objectReference: {fileID: 8300000, guid: c2c2f6e3238dd23468b415205f7b535e, type: 3}
-    - target: {fileID: 114360898358173074, guid: 4e4c51453bb4eb2449af81a586a6aae9,
-        type: 2}
-      propertyPath: soundGroups.Array.data[3].group.Array.data[3]
-      value: 
-      objectReference: {fileID: 8300000, guid: 2c8ecd41ea4e49542bb27a087d3e9215, type: 3}
-    - target: {fileID: 114360898358173074, guid: 4e4c51453bb4eb2449af81a586a6aae9,
-        type: 2}
-      propertyPath: soundGroups.Array.data[3].group.Array.data[4]
-      value: 
-      objectReference: {fileID: 8300000, guid: 74a19f86ad621a4459dfd467a35839ae, type: 3}
-    - target: {fileID: 114360898358173074, guid: 4e4c51453bb4eb2449af81a586a6aae9,
-        type: 2}
-      propertyPath: soundGroups.Array.data[3].group.Array.data[5]
-      value: 
-      objectReference: {fileID: 8300000, guid: 4cd4e26c585b72d438e67b594cfb6a5c, type: 3}
-    - target: {fileID: 114360898358173074, guid: 4e4c51453bb4eb2449af81a586a6aae9,
-        type: 2}
-      propertyPath: soundGroups.Array.data[4].groupID
-      value: UI
-      objectReference: {fileID: 0}
-    - target: {fileID: 114360898358173074, guid: 4e4c51453bb4eb2449af81a586a6aae9,
-        type: 2}
-      propertyPath: soundGroups.Array.data[4].group.Array.data[0]
-      value: 
-      objectReference: {fileID: 8300000, guid: 1df7461e1c78d1141ac424c67aa0e3cc, type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4e4c51453bb4eb2449af81a586a6aae9, type: 2}
   m_IsPrefabParent: 0
